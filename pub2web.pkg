@@ -1,0 +1,28 @@
+v 3
+d pub2web.
+d
+d Turn a list of your .ado packages into a "usersite" website.
+d Input a list of your .ado programs
+d For each program "package_name"
+d 1. create a package_name.pkg file for a stata usersite
+d 2. search for files named package_name* (in PERSONSAL or another directory)
+d 2. copy files to "using" directory
+d 3. description for .pkg file comes from all lines at top of .ado file beginning 
+d with "//" or "*"
+d 4. add files to a all.pkg package.
+d Then, create a stata.toc "table of contents" file for a stata usersite w/ links 
+d to all the packages
+d 
+d required packages: fs
+d 
+d See {help usersite} for more info
+d 
+d By Keith Kranker
+d 2011/03/28 16:36:00 $
+f p/pub2web.ado
+f p/pub2web.hlp
+
+d
+d Program by Keith Kranker
+* This package file created on 28 Mar 2011
+* with Keith Kranker's package -pub2web-

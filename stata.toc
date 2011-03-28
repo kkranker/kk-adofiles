@@ -1,0 +1,13 @@
+v 3
+d Stata programs by Keith Kranker
+d Programs by Keith Kranker, Ph.D. Candidate, Department of Economics, University 
+d of Maryland
+d
+d Last updated: 28 Mar 2011
+
+p all Bulk download all Stata program(s) by Keith Kranker
+
+p pub2web  Turn a list of your .ado packages into a "usersite" website.
+
+* This stata.toc file created on 28 Mar 2011
+* with Keith Kranker's package -pub2web-

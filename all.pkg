@@ -1,0 +1,12 @@
+v 3
+d all. Bulk download all Stata program(s) by Keith Kranker
+d Program(s) by Keith Kranker
+d Bulk download all Stata programs
+d
+d Last updated: 28 Mar 2011
+
+f p/pub2web.ado
+f p/pub2web.hlp
+
+* This package file created on 28 Mar 2011
+* with Keith Kranker's package -pub2web-
