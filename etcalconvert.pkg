@@ -1,0 +1,17 @@
+v 3
+d etcalconvert.
+d
+d Function to convert Ethiopian calendar month/year to Gregorian calendar month/ye
+d ear
+d shifts date by 7 years, 8 months.
+d This is only an approximation of a more complicated conversion process
+d 
+d By Keith Kranker
+d $
+f e/etcalconvert.ado
+f e/etcalconvert.hlp
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-
