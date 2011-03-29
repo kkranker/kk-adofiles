@@ -1,0 +1,29 @@
+v 3
+d graphbetas.
+d
+d Rudimentary program to graph beta coefficients after a regression (for example)
+d (1) if you specify something for "find" it will only graph the beta cofficients 
+d for the
+d variables where a regular expression search for "" in the variable name returns 
+d "1".
+d (2) if find is not used, it will also clean up variable names beginning with an 
+d underscore:
+d 	  example: "_Ixxx_10" would be converted to "10"
+d (3) any other options get passed to the twoway scatteri command
+d You can specify a matrix besides e(b) (the default), but it must be a row vector
+d r
+d 
+d By Keith Kranker
+d $
+d example:
+d . xi : reg y i.YEAR x
+d . graphbetas , find("_IY")
+d . graphbetas , find("eqn1:")        <-- equation name
+d . graphbetas , find("eqn1:_I.*")    <-- .* is a wildcard
+f g/graphbetas.ado
+f g/graphbetas.hlp
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-

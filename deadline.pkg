@@ -1,0 +1,21 @@
+v 3
+d deadline.
+d
+d Returns an error if the current time is past your "deadline"
+d BASIC USE:
+d deadline 18nov2010 06:44:19
+d 
+d MULTIPLE DEADLINE CHECKS:
+d deadline 20nov2010 11:30:19     <-- Sets the deadline and checks if it's expired
+d d. saves deadline for later in global
+d yada yada yada
+d deadline                        <-- checks deadline (, from above) expired
+d 
+d By Keith Kranker
+d $
+f d/deadline.ado
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-

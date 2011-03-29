@@ -1,0 +1,17 @@
+v 3
+d dropstringvars.
+d
+d Drop all string variables in a varlist
+d 
+d Note: Requires a template excel file, exceldesc.xls, to be installed in the same
+d e folder as this .ado file
+d 
+d By Keith Kranker
+d $
+f d/dropstringvars.ado
+f d/dropstringvars.hlp
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-

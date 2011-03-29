@@ -1,0 +1,19 @@
+v 3
+d mat_blockdiag.
+d
+d Combine to diagonal matrices into a single matrix (preserves row/column names)
+d 
+d By Keith Kranker
+d $
+d syntax:
+d . mat_blockdiag  new_matrix_name  =  matrix_name_1  matrix_name_2
+d based on the command
+d . mata: st_matrix( "newmat", blockdiag( st_matrix( "mat1"), st_matrix( "mat2")))
+d )
+d execpt that it preserves row/column names
+f m/mat_blockdiag.ado
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-

@@ -1,0 +1,20 @@
+v 3
+d meantab.
+d
+d Create a "summary statistics" table.
+d 
+d Create a "summary statistics" table.
+d Rows are variables.
+d Columns are subgroups.
+d Column w/ difference/tstat as an option.
+d 
+d By Keith Kranker
+d $
+f m/meantab.ado
+f m/meantab.hlp
+f m/meantab_example.do
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-

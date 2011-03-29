@@ -1,0 +1,33 @@
+v 3
+d predict_toggle.
+d
+d After a regression, predict with X1=0, X1=1, then calculate the difference
+d This is a post-estimation command.
+d Suppose you have a dummy variable X.
+d The program will:
+d 1. calculate model prediction with X
+d 2. calculate model prediction with X = 0
+d 3. calculate model prediction with X = 1
+d 4. calculate difference between 3/4
+d 5. return X to original state
+d arraytreatments option:
+d calculate treatment effect on treated:
+d where "untreated" is 0 for all variables in varlist
+d treatment is the "actual" treatment.
+d I do not turn on treat=1 for the whole array
+d 
+d By Keith Kranker
+d $
+d * EXAMPLE:
+d set trace on
+d /
+f p/predict_toggle.ado
+f p/predict_toggle.hlp
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-
+
+f c/case_predict.ado
+f c/case_predict.hlp

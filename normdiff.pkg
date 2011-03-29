@@ -1,0 +1,23 @@
+v 3
+d normdiff.
+d
+d Create a table to compare two groups, including normalized differences.
+d 
+d For each variable, this program calculates Delta_X  and  T  from forumlas (3) an
+d nd (4) of
+d 
+d Imbens & Wooldridge  (2009) "Recent Developments in the Econometrics of Program 
+d Evaluation."
+d Journal of Economic Literature.  March 2009, Volume XLVII, Number 1.
+d 
+d By Keith Kranker
+d $
+f n/normdiff.ado
+f n/normdiff.hlp
+f n/normdiff_example.ado
+f n/normdiff_example.csv
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-

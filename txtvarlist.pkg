@@ -1,0 +1,19 @@
+v 3
+d txtvarlist.
+d
+d Export a varlist to a text file.
+d 
+d By Keith Kranker
+d $
+d 
+d csvvars.ado
+f t/txtvarlist.ado
+f t/txtvarlist.hlp
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-
+
+f c/csvvars.ado
+f c/csvvars.hlp

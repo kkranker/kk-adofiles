@@ -1,0 +1,21 @@
+v 3
+d alt.
+d
+d alter (demean, normalize, and scale) vaiables.
+d This probrams ALTers variables in varlist.  available sub-commands are
+d 	alt demean:       X2 = X1-mean(X1)                     subract mean(varname) fr
+d rom varname
+d 	alt standardize:  X2 = ( X1-mean(X1) ) / sd(S1)        normalize to mean=0, std
+d d.dev.=1
+d 	alt scale:        X2 = (X1-min(X1))/(max(X1)-min(X1))  rescale to range [0,1]
+d 
+d 
+d By Keith Kranker
+d $
+f a/alt.ado
+f a/alt.hlp
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-

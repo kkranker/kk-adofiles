@@ -1,0 +1,43 @@
+<html> 
+  <head> 
+    <style type="text/css">
+        body{font-family:Helvetica,Arial,sans-serif;}
+        h1{font-size:1.25em;}
+    </style>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script> 
+    <script type="text/javascript"> 
+      google.load('visualization', '1', {'packages':['motionchart']}); 
+      google.setOnLoadCallback(drawChart); 
+      function drawChart() { 
+        var data = new google.visualization.DataTable(); 
+        data.addColumn('string', 'id'); 
+        data.addColumn('number', 'year'); 
+        data.addColumn('number', 'Blood pressure'); 
+        data.addColumn('string', 'Sex'); 
+        data.addRows([ 
+            ['patient58',2008,154,'Male'],
+            ['patient58',2009,147,'Male'],
+            ['patient59',2008,172,'Male'],
+            ['patient59',2009,161,'Male'],
+            ['patient60',2008,162,'Male'],
+            ['patient60',2009,164,'Male'],
+            ['patient61',2008,152,'Female'],
+            ['patient61',2009,149,'Female'],
+            ['patient62',2008,147,'Female'],
+            ['patient62',2009,142,'Female']
+          ]); 
+        var chart = new google.visualization.MotionChart(document.getElementById('chart_div')); 
+        var options = {}; 
+        options['width'] = 600; 
+        options['height'] = 400; 
+        options['state'] = '{"duration":{"timeUnit":"Y","multiplier":1},"nonSelectedAlpha":0.4,"yZoomedDataMin":142,"time":"2008","yZoomedDataMax":172,"iconKeySettings":[{"key":{"dim0":"patient60"},"trailStart":"2008"}],"yZoomedIn":false,"xZoomedDataMin":1199145600000,"xLambda":1,"playDuration":4111.1111111111095,"orderedByX":false,"xZoomedIn":false,"uniColorForNonSelected":false,"sizeOption":"_UNISIZE","iconType":"BUBBLE","dimensions":{"iconDimensions":["dim0"]},"xZoomedDataMax":1230768000000,"yLambda":1,"yAxisOption":"2","colorOption":"3","showTrails":true,"xAxisOption":"_TIME","orderedByY":false}';
+        chart.draw(data, options); 
+      } 
+    </script> 
+  </head> 
+   
+  <body> 
+   <h1>Blood Pressure</h1>
+   <div id="chart_div" style="width: 600px; height: 400px;"></div> 
+  </body> 
+</html> 

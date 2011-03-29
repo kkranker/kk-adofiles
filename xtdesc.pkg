@@ -1,0 +1,12 @@
+v 3
+d xtdesc.
+d
+d Synonym for xtdes
+d I always make the typo of typing "xtdesc" instead of "xtdes."  Now, no longer...
+d .
+f x/xtdesc.ado
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-

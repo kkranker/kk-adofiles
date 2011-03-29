@@ -1,0 +1,14 @@
+v 3
+d usedrop.
+d
+d Use Stata dataset, excluding selected variables
+d 
+d By Keith Kranker
+d $
+f u/usedrop.ado
+f u/usedrop.hlp
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-

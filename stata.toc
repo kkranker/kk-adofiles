@@ -3,11 +3,43 @@ d Stata programs by Keith Kranker
 d Programs by Keith Kranker, Ph.D. Candidate, Department of Economics, University 
 d of Maryland
 d
-d Last updated: 28 Mar 2011
+d Last updated: 29 Mar 2011
 
 p all Bulk download all Stata program(s) by Keith Kranker
 
+p alt  alter (demean, normalize, and scale) vaiables.
+p beep  Send a "beep" to your computer speakers (Windows only)
+p clean_row_vector  Drop empty cells from a row vector (matrix), while keeping column labels
+p deadline  Returns an error if the current time is past your "deadline"
+p dhs_cmc  Interpret a DHS variable that is a "Country Month Code"
+p did3  Create difference-in-differences tables.
+p dropstringvars  Drop all string variables in a varlist
+p e_  Add mean of e(depvar) to ereturn after a regression
+p exceldesc  Export summary statistics to Microsoft Excel
+p foldercodebook  Automatic codebook creation
+p foldergraphexport  Automatic graph conversion of a n entire folder
+p getcmds_personal  Run getcmds on PERSONAL and PLUS system directories (a hack of getcmds)
+p graphbetas  Rudimentary program to graph beta coefficients after a regression (for example)
+p kak_  A "helper" program.
+p margfx2  Wrapper to add ereturn results from margfx.ado program (by Jonah B. Gelbach),
+p mat2txt2  Export a matrix to text file.
+p mat_blockdiag  Combine to diagonal matrices into a single matrix (preserves row/column names)
+p meantab  Create a "summary statistics" table.
+p memmax  Set memory to the maximum allowed by your operating system.
+p motionchart  Create graphs of your data, from Stata, as a Google Motion Chart
+p moveb  move below
+p normdiff  Create a table to compare two groups, including normalized differences.
+p npp  Open something in Notepad++
+p predict_toggle  After a regression, predict with X1=0, X1=1, then calculate the difference
+p predlog2  Duan smearing & heteroscedastic smearing retransformation
 p pub2web  Turn a list of your .ado packages into a "usersite" website.
+p scatter_hist  Scatter plot with bordering histograms
+p txt2notes  txt2notes reads in a text file and adds each line as "notes" for the dataset.
+p txtvarlist  Export a varlist to a text file.
+p usedrop  Use Stata dataset, excluding selected variables
+p varlist_type  Separate a varlist into macros containing of string/binary/continuous variables
+p xilabel  Quickly "clean up" variable labels for variables created by the [xi : ] command. .
+p xtdesc  Synonym for xtdes
 
-* This stata.toc file created on 28 Mar 2011
+* This stata.toc file created on 29 Mar 2011
 * with Keith Kranker's package -pub2web-

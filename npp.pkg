@@ -1,0 +1,14 @@
+v 3
+d npp.
+d
+d Open something in Notepad++
+d 
+d By Keith Kranker
+d $
+f n/npp.ado
+f n/npp.hlp
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-

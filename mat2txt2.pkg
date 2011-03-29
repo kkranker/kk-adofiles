@@ -1,0 +1,32 @@
+v 3
+d mat2txt2.
+d
+d Export a matrix to text file.
+d 
+d This program is an update/modification of mat2txt.ado by Ben Jann and M Blasnik 
+d (v 1.1.2)
+d 
+d Changes from the original program are additions to the base program or cosmetic 
+d changes: {break}
+d (1) Updated syntax to {it:mat2txt2 matname using ... , options }{break}
+d (2) Allow multiple matrices. Allow e() and r() matrices. {break}
+d (3) Replace cells equal to .z with empty cells {break}
+d (4) Options to choose file delimiter.
+d (5) Matnames and Timestamp options {break}
+d (6) Allow user to click on a link to view or open the output file.{break}
+d (7) Handle option (Version 1.1+) {break}
+d (8) Clean option (Verson 1.2+) {break}
+d (9) Label option (Verson 1.3+){break}
+d (10) Default delimiter is "_tab"  (previously ",") (Version 1.3+)  {break}
+d (11) Filestamp option (Verson 1.4+) {break}
+d (12) Rowclean, colclean, rowlabel, and collabel options (Verson 1.5+) {break}
+d 
+d By Keith Kranker
+d $
+f m/mat2txt2.ado
+f m/mat2txt2.hlp
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-

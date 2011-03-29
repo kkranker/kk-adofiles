@@ -1,4 +1,4 @@
-$Id: pub2web.hlp,v ebd999b235c4 2011/03/28 16:36:00 keith $
+$Id: personal/p/pub2web.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/29 00:09:46 (revision 4b119ce29a6c by user keith) $
 
 Help for pub2web.ado
 
@@ -33,6 +33,7 @@ pub2web
     Width(integer 80)         max width of text files
     Cline(integer 2)          comment line #__ of .ado file has title of package
                                 cline is first line printed into .pkg file
+	maxintro(integer 40)      max number of intro lines in .pkg file
     ]  
 
 

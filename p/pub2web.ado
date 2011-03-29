@@ -1,4 +1,4 @@
-*! $Id: pub2web.ado,v ebd999b235c4 2011/03/28 16:36:00 keith $
+*! $Id: personal/p/pub2web.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/29 00:09:46 (revision 4b119ce29a6c by user keith) $
 *! Turn a list of your .ado packages into a "usersite" website.
 
 * Input a list of your .ado programs
@@ -31,6 +31,7 @@ syntax ///
 		Intro(string) /// add an introduction to your stata.toc file
 		Width(integer 80) /// max width of text files
 		Cline(integer 2) /// comment line #__ of .ado file has title of package cline is first line printed into .pkg file
+		maxintro(integer 40) /// max number of intro lines in .pkg file
 		]  
 	
 local pwd = c(pwd) 
@@ -108,14 +109,15 @@ foreach pkg of local pck_list {
 	// start .pkg file	
 	file open  `looppkg' using `"`using'/`pkg'.pkg"', write text `replace'	
 	file write `looppkg' "v 3" _newline "d `pkg'." _newline "d" _newline
-
+	
+	local c_ado=0
+	
 	foreach f of local files {
 	
 		if missing("`subfolders'") & regexm("`f'","^(.*)(\\|\/)+(.*)$") {
 			// file might be in subfolder 
 			local subf = regexs(1) + "/"
 			local filename = regexs(3)
-			noisily di as input `"| . cap mkdir `"`using'/`subf'"', public "'
 			cap mkdir `"`using'/`subf'"',  public
 		}
 		else {
@@ -137,10 +139,12 @@ foreach pkg of local pck_list {
 		}
 		
 		if regexm("`filename'","\.[aA][dD][oO]$") {
+			local ++c_ado
 			file open readado using "`using'/`subf'`filename'" , read
 			local ll=0
-			forvalues l=1/20 {
+			forvalues l=1/`maxintro' {
 				file read readado line
+				if `c_ado'>1 continue
 				if `l'<`cline' & `cline'>1 continue 
 				if regexm(`"`line'"',"program *define") continue, break
 				if !regexm(`"`line'"',"^ *(\/+|\*)\!? ?:? ?(.*)\$? *$") continue  // line begining with "*" or "//", excluding the comment marks

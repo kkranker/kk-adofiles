@@ -1,0 +1,16 @@
+v 3
+d did3.
+d
+d Create difference-in-differences tables.
+d 
+d See help file for more information
+d 
+d By Keith Kranker
+d $
+f d/did3.ado
+f d/did3.hlp
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-

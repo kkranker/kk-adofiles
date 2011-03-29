@@ -1,0 +1,18 @@
+v 3
+d exceldesc.
+d
+d Export summary statistics to Microsoft Excel
+d 
+d Note: Requires a template excel file, exceldesc.xls, to be installed in the same
+d e folder as this .ado file
+d 
+d By Keith Kranker
+d $
+f e/exceldesc.ado
+f e/exceldesc.hlp
+f e/exceldesc.xls
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-

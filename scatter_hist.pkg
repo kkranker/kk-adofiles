@@ -1,0 +1,18 @@
+v 3
+d scatter_hist.
+d
+d Scatter plot with bordering histograms
+d 
+d Implementation of graph(s) in
+d . help graph combine
+d 
+d By Keith Kranker
+d $
+f s/scatter_hist.ado
+f s/scatter_hist.hlp
+f s/scatter_hist_example.ado
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-

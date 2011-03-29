@@ -1,0 +1,17 @@
+v 3
+d predlog2.
+d
+d Duan smearing & heteroscedastic smearing retransformation
+d 
+d Note: This is an update of the program -predlog- by Richard Goldstein (STB:  STB
+d B-29 sg48)
+d 
+d By Keith Kranker
+d $
+f p/predlog2.ado
+f p/predlog2.hlp
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-

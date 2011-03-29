@@ -3,10 +3,114 @@ d all. Bulk download all Stata program(s) by Keith Kranker
 d Program(s) by Keith Kranker
 d Bulk download all Stata programs
 d
-d Last updated: 28 Mar 2011
+d Last updated: 29 Mar 2011
+
+f a/alt.ado
+f a/alt.hlp
+
+f b/beep.ado
+
+f c/clean_row_vector.ado
+f c/clean_row_vector.hlp
+
+f d/deadline.ado
+
+f d/dhs_cmc.ado
+
+f d/did3.ado
+f d/did3.hlp
+
+f d/dropstringvars.ado
+f d/dropstringvars.hlp
+
+f e/e_add_mean_y.ado
+f e/e_add_y_percent_n.ado
+f e/e_countif.ado
+
+f e/exceldesc.ado
+f e/exceldesc.hlp
+f e/exceldesc.xls
+
+f f/foldercodebook.ado
+f f/foldercodebook.hlp
+f f/foldercodebook_sub.ado
+f f/foldercodebook_sub.hlp
+
+f f/foldergraphexport.ado
+f f/foldergraphexport.hlp
+
+f g/getcmds_personal.ado
+f g/getcmds_personal.hlp
+
+f g/graphbetas.ado
+f g/graphbetas.hlp
+
+f k/kak_add_ereturn.ado
+f k/kak_add_mean_y.ado
+f k/kak_add_percent0.ado
+f k/kak_add_return.ado
+f k/kak_encode.ado
+f k/kak_graph.ado
+f k/kak_graph.hlp
+f k/kak_psgraph.ado
+
+f m/margfx2.ado
+
+f m/mat2txt2.ado
+f m/mat2txt2.hlp
+
+f m/mat_blockdiag.ado
+
+f m/meantab.ado
+f m/meantab.hlp
+f m/meantab_example.do
+
+f m/memmax.ado
+f m/memmax.hlp
+
+f m/motionchart.ado
+f m/motionchart.hlp
+f m/motionchart_example.ado
+f m/motionchart_example.html
+
+f m/moveb.ado
+
+f n/normdiff.ado
+f n/normdiff.hlp
+f n/normdiff_example.ado
+f n/normdiff_example.csv
+
+f n/npp.ado
+f n/npp.hlp
+
+f p/predict_toggle.ado
+f p/predict_toggle.hlp
+
+f p/predlog2.ado
+f p/predlog2.hlp
 
 f p/pub2web.ado
 f p/pub2web.hlp
 
-* This package file created on 28 Mar 2011
+f s/scatter_hist.ado
+f s/scatter_hist.hlp
+f s/scatter_hist_example.ado
+
+f t/txt2notes.ado
+f t/txt2notes.hlp
+
+f t/txtvarlist.ado
+f t/txtvarlist.hlp
+
+f u/usedrop.ado
+f u/usedrop.hlp
+
+f v/varlist_type.ado
+
+f x/xilabel.ado
+f x/xilabel.hlp
+
+f x/xtdesc.ado
+
+* This package file created on 29 Mar 2011
 * with Keith Kranker's package -pub2web-

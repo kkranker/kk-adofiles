@@ -1,0 +1,13 @@
+v 3
+d beep.
+d
+d Send a "beep" to your computer speakers (Windows only)
+d 
+d By Keith Kranker
+d $
+f b/beep.ado
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-

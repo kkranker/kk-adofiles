@@ -1,0 +1,24 @@
+v 3
+d kak_.
+d
+d A "helper" program.
+d Quickly add "ereturn" scalars and locals
+d Multiple entries are allowed, and entries are parsed with blanks
+d 
+d By Keith Kranker
+d $
+d *
+d /
+f k/kak_add_ereturn.ado
+f k/kak_add_mean_y.ado
+f k/kak_add_percent0.ado
+f k/kak_add_return.ado
+f k/kak_encode.ado
+f k/kak_graph.ado
+f k/kak_graph.hlp
+f k/kak_psgraph.ado
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-

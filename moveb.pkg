@@ -1,0 +1,16 @@
+v 3
+d moveb.
+d
+d move below
+d moveb stands for "move below"
+d Identical to the move command, move varname1 varname2
+d but it will move varname1 BELOW varname2, not above varname2
+d 
+d By Keith Kranker
+d $
+f m/moveb.ado
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-

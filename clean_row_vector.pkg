@@ -1,0 +1,17 @@
+v 3
+d clean_row_vector.
+d
+d Drop empty cells from a row vector (matrix), while keeping column labels
+d 
+d By Keith Kranker
+d $
+d written for and required by  tpm_xtgee_mfx.ado
+d *
+d /
+f c/clean_row_vector.ado
+f c/clean_row_vector.hlp
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-

@@ -1,0 +1,31 @@
+{smcl}
+{* $Id: personal/n/npp.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/29 00:09:46 (revision 4b119ce29a6c by user keith) $ }
+{* $Date$}{...}
+{cmd:help npp}
+{hline}
+
+
+{title:Title}
+
+{phang}Open something in notepad++
+{p_end}
+
+
+{title:Syntax}
+
+{phang} {cmdab:npp} {it:filename}
+
+
+{title:Other Information}
+{* $Id: personal/n/npp.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/29 00:09:46 (revision 4b119ce29a6c by user keith) $ }
+{phang}Author: Keith Kranker{p_end}
+
+{phang}$Date${p_end}
+
+
+{title:Also see}
+
+{psee}
+Online:  
+{help doedit}, {help winexec}
+{p_end}

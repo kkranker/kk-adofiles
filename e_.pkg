@@ -1,0 +1,19 @@
+v 3
+d e_.
+d
+d Add mean of e(depvar) to ereturn after a regression
+d 
+d By Keith Kranker
+d $
+d example:
+d . regress y x1 x2
+d . e_add_mean_y
+d . outreg2
+f e/e_add_mean_y.ado
+f e/e_add_y_percent_n.ado
+f e/e_countif.ado
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-

@@ -1,0 +1,14 @@
+v 3
+d foldergraphexport.
+d
+d Automatic graph conversion of a n entire folder
+d 
+d By Keith Kranker
+d $
+f f/foldergraphexport.ado
+f f/foldergraphexport.hlp
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-

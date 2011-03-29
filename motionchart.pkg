@@ -1,0 +1,24 @@
+v 3
+d motionchart.
+d
+d Create graphs of your data, from Stata, as a Google Motion Chart
+d Create an HTML file that will graph your data as a Google Motion Chart.
+d 
+d Reference:
+d Google API:  http://code.google.com/apis/visualization/documentation/gallery/mot
+d tionchart.html
+d 
+d To do : make code more flexible with date variables.  Right now, it only takes y
+d years (integers).
+d 
+d .ado file by Keith Kranker
+d $
+f m/motionchart.ado
+f m/motionchart.hlp
+f m/motionchart_example.ado
+f m/motionchart_example.html
+
+d
+d Program by Keith Kranker
+* This package file created on 29 Mar 2011
+* with Keith Kranker's package -pub2web-
