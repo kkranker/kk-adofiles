@@ -15,6 +15,7 @@ p dhs_cmc  Interpret a DHS variable that is a "Country Month Code"
 p did3  Create difference-in-differences tables.
 p dropstringvars  Drop all string variables in a varlist
 p e_  Add mean of e(depvar) to ereturn after a regression
+p etcalconvert  Function to convert Ethiopian calendar month/year to Gregorian calendar month/year ear
 p exceldesc  Export summary statistics to Microsoft Excel
 p foldercodebook  Automatic codebook creation
 p foldergraphexport  Automatic graph conversion of a n entire folder

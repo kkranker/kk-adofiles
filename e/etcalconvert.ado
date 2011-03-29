@@ -1,9 +1,10 @@
-*! ETcalconvert.ado
-*! Keith Kranker
-
-* function to convert ethiopian calendar month/year to gregorian calendar month/year
-* shift date by 7 years, 8 months.
+*! $Id$
+*! Function to convert Ethiopian calendar month/year to Gregorian calendar month/year
+* shifts date by 7 years, 8 months.
 * This is only an approximation of a more complicated conversion process
+*
+* By Keith Kranker
+* $Date$
 
 program define ETcalconvert
   syntax varlist(min=2 max=2 numeric)                      ///  input:  year_var month_var in ethiopian calendar

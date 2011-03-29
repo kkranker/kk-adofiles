@@ -1,5 +1,6 @@
 {smcl}
-{* 07apr2005}{...}
+{* $Id$ }
+{* $Date$}{...}
 {cmd:help ETcalconvert}
 {hline}
 
@@ -40,11 +41,13 @@ See {browse "http://ethiopic.org/Calendars/"}
 or {browse "http://en.wikipedia.org/wiki/Ethiopian_calendar"} for details.
 
 
-{title:Author}
 
-{pstd}Keith Kranker{p_end}
+{title:Other Information}
+{* $Id$ }
+{phang}Author: Keith Kranker{p_end}
 
-{pstd}$Date: 2011/03/25 14:53:01 ${p_end}
+{phang}$Date${p_end}
+
 
 {title:Examples}
 

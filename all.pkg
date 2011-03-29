@@ -27,6 +27,9 @@ f e/e_add_mean_y.ado
 f e/e_add_y_percent_n.ado
 f e/e_countif.ado
 
+f e/etcalconvert.ado
+f e/etcalconvert.hlp
+
 f e/exceldesc.ado
 f e/exceldesc.hlp
 f e/exceldesc.xls

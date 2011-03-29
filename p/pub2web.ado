@@ -99,6 +99,7 @@ foreach pkg of local pck_list {
 	di _col(20) as res "`files'"
 
 	if missing("`files'") {
+		local problems `problems' `pkg'
 		di as error "Files named `pkg'* not found --> skipped"
 		continue
 	}
@@ -182,5 +183,7 @@ file close `all'
 
 file write `toc' _newline(2) "* This stata.toc file created on ${S_DATE}" _newline "* with Keith Kranker's package -pub2web-" _newline
 file close `toc'
+
+if !missing(`"`problems'"') di as err "No files for these packages: " _n as res _col(5) `"`problems'"'
 	
 end 

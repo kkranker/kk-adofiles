@@ -18,7 +18,7 @@ pub2web ///
 	did3 /// 
 	dropstringvars /// 
 	e_ ///
-	ETcalconvert ///
+	etcalconvert ///
 	exceldesc /// 
 	foldercodebook /// 
 	foldergraphexport /// 
