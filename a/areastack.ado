@@ -1,4 +1,4 @@
-*! $Id: personal/a/areastack.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/08 19:27:14 (revision e4bf07dcdc07 by user keith) $
+*! $Id: personal/a/areastack.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/08 19:54:41 (revision 8b3a24e04d24 by user keith) $
 *! graph command like "twoway area" which "stacks" the over(), instead of overlaying them.
 
 * This program is similar to "twoway area",
@@ -14,7 +14,7 @@
 *        (area cumulative x_var if over_var==3 )
 *        (area cumulative x_var if over_var==2 )
 *        (area cumulative x_var if over_var==1 )
-*        , legend(order(4 3 2 1) label(1 "over_var label 1") ... label(4 "over_var label 4")) ytitle("Cumulative" ...)
+*        , legend(order(4 3 2 1) label(1 "over_var label 1") ... label(4 "over_var label 4"))
 *
 * Any options are passed along to the graph twoway command.
 *
@@ -47,7 +47,7 @@ program define areastack, sortpreserve
 
   tempvar cum
   bys `x' (`index') : gen `cum' = sum(`y') if `touse'
-  label var `cum'
+  var lab `cum' "`:var lab `y''"
 
   di as txt  "-areastack- will execute the following command:"
   di as input _col(4) ". graph twoway"
@@ -67,7 +67,7 @@ program define areastack, sortpreserve
     local --c
   }
 
-  di as input _col(8)   `", legend(order(`ord') `labels') "' _n _col(10) `"ytitle("Cumulative" "`:var lab `y''")"' _n _col(10) `"`options'"'
+  di as input _col(8)   `", legend(order(`ord') `labels') "' _n _col(10) _n _col(10) `"`options'"'
 
   graph twoway `graphlist', legend(order(`ord') `labels') ytitle("Cumulative" `"`:var lab `y''"') `options'
 end

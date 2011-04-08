@@ -1,4 +1,4 @@
-*! $Id: personal/a/areastack.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/08 19:27:14 (revision e4bf07dcdc07 by user keith) $
+*! $Id: personal/a/areastack.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/08 19:54:41 (revision 8b3a24e04d24 by user keith) $
 
 areastack
 graph command like "twoway area" which "stacks" the over(), instead of overlaying them.
@@ -16,7 +16,7 @@ Then, it executes a command like this:
        (area cumulative x_var if over_var==3 )
        (area cumulative x_var if over_var==2 )
        (area cumulative x_var if over_var==1 )
-       , legend(order(4 3 2 1) label(1 "over_var label 1") ... label(4 "over_var label 4")) ytitle("Cumulative" ...)
+       , legend(order(4 3 2 1) label(1 "over_var label 1") ... label(4 "over_var label 4"))
 
 Any options are passed along to the graph twoway command.
 
