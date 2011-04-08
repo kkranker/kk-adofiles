@@ -26,7 +26,7 @@ f p/predict_toggle.hlp
 
 d
 d Program by Keith Kranker
-* This package file created on  7 Apr 2011
+* This Stata package file created on  8 Apr 2011
 * with Keith Kranker's package -pub2web-
 
 f c/case_predict.ado

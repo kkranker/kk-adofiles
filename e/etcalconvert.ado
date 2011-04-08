@@ -1,4 +1,4 @@
-*! $Id: personal/e/etcalconvert.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/29 17:23:36 (revision 0a32e783c9fa by user keith) $
+*! $Id: personal/e/etcalconvert.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/08 17:22:17 (revision 219208490805 by user keith) $
 *! Function to convert Ethiopian calendar month/year to Gregorian calendar month/year
 * shifts date by 7 years, 8 months.
 * This is only an approximation of a more complicated conversion process
@@ -6,7 +6,7 @@
 * By Keith Kranker
 * $Date$
 
-program define ETcalconvert
+program define etcalconvert
   syntax varlist(min=2 max=2 numeric)                      ///  input:  year_var month_var in ethiopian calendar
       [if] [in] [, Replace GENerate(namelist min=2 max=2)] //  output: replace or provide new variable names
   gettoken year month : varlist

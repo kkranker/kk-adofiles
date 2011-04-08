@@ -3,10 +3,13 @@ d all. Bulk download all Stata program(s) by Keith Kranker
 d Program(s) by Keith Kranker
 d Bulk download all Stata programs
 d
-d Last updated:  7 Apr 2011
+d Last updated:  8 Apr 2011
 
 f a/alt.ado
 f a/alt.hlp
+
+f a/areastack.ado
+f a/areastack.hlp
 
 f b/beep.ado
 
@@ -118,5 +121,5 @@ f x/xilabel.hlp
 
 f x/xtdesc.ado
 
-* This package file created on  7 Apr 2011
+* This Stata package file created on  8 Apr 2011
 * with Keith Kranker's package -pub2web-

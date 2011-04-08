@@ -1,7 +1,7 @@
 {smcl}
-{* $Id: personal/e/etcalconvert.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/29 17:23:36 (revision 0a32e783c9fa by user keith) $ }
+{* $Id: personal/e/etcalconvert.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/08 17:22:17 (revision 219208490805 by user keith) $ }
 {* $Date$}{...}
-{cmd:help ETcalconvert}
+{cmd:help etcalconvert}
 {hline}
 
 {title:Ethiopian year/month calendar conversion}
@@ -13,7 +13,7 @@ Convert a year/month in the Ethiopian calendar to the (approximately) equivalent
 {title:Syntax}
 
 {p 8 17 2}
-{cmdab:ETcalconvert}
+{cmdab:etcalconvert}
 {it: year_var month_var}
 {ifin}
 {cmd:,} ( {it:replace} | {it:generate( new_year_var new_month_var )} )
@@ -33,7 +33,7 @@ Specifiy {cmd:replace} or {cmd:generate}, but not both.{p_end}
 {title:Description}
 
 {pstd}
-{cmd:ETcalconvert} converts a year/month in the Ethiopian calendar to the Gregorian calendar month/year.
+{cmd:etcalconvert} converts a year/month in the Ethiopian calendar to the Gregorian calendar month/year.
 
 {pstd}This is only an approximation of a more complicated calendar conversion process.  
 It shifts year/month by 7 years, 8 months.
@@ -43,7 +43,7 @@ or {browse "http://en.wikipedia.org/wiki/Ethiopian_calendar"} for details.
 
 
 {title:Other Information}
-{* $Id: personal/e/etcalconvert.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/29 17:23:36 (revision 0a32e783c9fa by user keith) $ }
+{* $Id: personal/e/etcalconvert.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/08 17:22:17 (revision 219208490805 by user keith) $ }
 {phang}Author: Keith Kranker{p_end}
 
 {phang}$Date${p_end}
@@ -54,9 +54,9 @@ or {browse "http://en.wikipedia.org/wiki/Ethiopian_calendar"} for details.
 {pstd}I created for stacking DHS data files from multiple countries. Ethiopia DHS survey data was
 not in standard calendar format. 
 
-{cmd:. ETcalconvert v007 v006 if file_country_code=="ET", replace }
-{cmd:. ETcalconvert b2 b1     if file_country_code=="ET", replace }
-{cmd:. ETcalconvert h9y h9m   if file_country_code=="ET", replace}
+{cmd:. etcalconvert v007 v006 if file_country_code=="ET", replace }
+{cmd:. etcalconvert b2 b1     if file_country_code=="ET", replace }
+{cmd:. etcalconvert h9y h9m   if file_country_code=="ET", replace}
 
 {title:Also see}
 

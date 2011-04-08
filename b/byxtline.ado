@@ -1,4 +1,4 @@
-*! $Id: personal/b/byxtline.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/08 00:41:04 (revision 6151a8eae547 by user keith) $
+*! $Id: personal/b/byxtline.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/08 19:27:14 (revision e4bf07dcdc07 by user keith) $
 *! Wrapper for "xtline,overlay" that enables the by: prefix.  
 
 * This program exists because you aren't allowed to execute 
@@ -11,7 +11,6 @@
 *! By Keith Kranker
 *! $Date$
 
-cap program drop byxtline
 program define byxtline, byable(onecall) sortpreserve
 version 9
 syntax varname [if] [in] , ///
@@ -24,8 +23,8 @@ syntax varname [if] [in] , ///
 		YSIZe(passthru) XSIZe(passthru) GRAPHRegion(passthru) PLOTRegion(passthru) ///
         nodraw name(passthru) saving(passthru) ///
 	/// xtline options (overlay) is always on
-		*     /// all other options passed to xtline ... , overlay                                                                           ///
-	 ]  
+	*  ]     /// all other options passed to xtline ... , overlay                                                                           ///
+	  
 	 
 marksample touse
 tempvar index

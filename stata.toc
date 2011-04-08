@@ -3,11 +3,12 @@ d Stata programs by Keith Kranker
 d Programs by Keith Kranker, Ph.D. Candidate, Department of Economics, University 
 d of Maryland
 d
-d Last updated:  7 Apr 2011
+d Last updated:  8 Apr 2011
 
 p all Bulk download all Stata program(s) by Keith Kranker
 
 p alt  alter (demean, normalize, and scale) vaiables.
+p areastack  graph command like "twoway area" which "stacks" the over(), instead of overlaying them. ng them.
 p beep  Send a "beep" to your computer speakers (Windows only)
 p byxtline  Wrapper for "xtline,overlay" that enables the by: prefix.
 p clean_row_vector  Drop empty cells from a row vector (matrix), while keeping column labels
@@ -43,5 +44,5 @@ p varlist_type  Separate a varlist into macros containing of string/binary/conti
 p xilabel  Quickly "clean up" variable labels for variables created by the [xi : ] command. .
 p xtdesc  Synonym for xtdes
 
-* This stata.toc file created on  7 Apr 2011
+* This Stata table of contents (stata.toc) file created on  8 Apr 2011
 * with Keith Kranker's package -pub2web-

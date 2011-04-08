@@ -1,0 +1,32 @@
+v 3
+d areastack.
+d
+d graph command like "twoway area" which "stacks" the over(), instead of overlayin
+d ng them.
+d This program is similar to "twoway area",
+d except that it "stacks" the areas to a cumulative height
+d (similar to "graph bar ... , stack").
+d 
+d At it's core, this program creates a "cumulative" y-variable
+d . bys x_var (over_var) : gen cumulative = sum(x_var)
+d 
+d Then, it executes a command like this:
+d . graph twoway
+d (area cumulative x_var if over_var==4 )
+d (area cumulative x_var if over_var==3 )
+d (area cumulative x_var if over_var==2 )
+d (area cumulative x_var if over_var==1 )
+d , legend(order(4 3 2 1) label(1 "over_var label 1") ... label(4 "over_var label 
+d 4")) ytitle("Cumulative" ...)
+d 
+d Any options are passed along to the graph twoway command.
+d 
+d By Keith Kranker
+d $
+f a/areastack.ado
+f a/areastack.hlp
+
+d
+d Program by Keith Kranker
+* This Stata package file created on  8 Apr 2011
+* with Keith Kranker's package -pub2web-

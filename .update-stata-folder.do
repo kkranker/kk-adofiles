@@ -4,7 +4,8 @@
 cd "C:\Projects\code.google.com\kk-adofiles\"
 
 pub2web ///
-	alt /// 
+	alt ///
+	areastack ///
 	beep ///
 /*	bootstrap_exit_early */ /// 
 	byxtline ///

@@ -1,4 +1,4 @@
-*! $Id: personal/p/pub2web.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/29 17:23:36 (revision 0a32e783c9fa by user keith) $
+*! $Id: personal/p/pub2web.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/08 19:29:40 (revision 00364d46898d by user keith) $
 *! Turn a list of your .ado packages into a "usersite" website.
 
 * Input a list of your .ado programs
@@ -168,7 +168,7 @@ foreach pkg of local pck_list {
 	} // end loop thru files for package
 
 file write `looppkg' _newline "d" _newline `"d Program by `author'"' _newline
-file write `looppkg' "* This package file created on ${S_DATE}" _newline
+file write `looppkg' "* This Stata package file created on ${S_DATE}" _newline
 file write `looppkg' "* with Keith Kranker's package -pub2web-" _newline
 file close `looppkg' 
 file write `all' _newline
@@ -178,10 +178,10 @@ file write `all' _newline
 di as input "| . cd " _c 
 cd `"`pwd'"'
 
-file write `all' "* This package file created on ${S_DATE}" _newline "* with Keith Kranker's package -pub2web-" _newline
+file write `all' "* This Stata package file created on ${S_DATE}" _newline "* with Keith Kranker's package -pub2web-" _newline
 file close `all'
 
-file write `toc' _newline(2) "* This stata.toc file created on ${S_DATE}" _newline "* with Keith Kranker's package -pub2web-" _newline
+file write `toc' _newline(2) "* This Stata table of contents (stata.toc) file created on ${S_DATE}" _newline "* with Keith Kranker's package -pub2web-" _newline
 file close `toc'
 
 if !missing(`"`problems'"') di as err "No files for these packages: " _n as res _col(5) `"`problems'"'
