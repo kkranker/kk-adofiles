@@ -1,0 +1,21 @@
+v 3
+d byxtline.
+d
+d Wrapper for "xtline,overlay" that enables the by: prefix.
+d This program exists because you aren't allowed to execute
+d 	by var : xtline .....
+d This is a workaround.  There's a problem with the legends, but it's a first atte
+d empt.
+d 
+d Example:
+d bys country : byxtline mortality_rate , i(age) t(t) legend(off)
+d 
+d By Keith Kranker
+d $
+f b/byxtline.ado
+f b/byxtline.hlp
+
+d
+d Program by Keith Kranker
+* This package file created on  7 Apr 2011
+* with Keith Kranker's package -pub2web-

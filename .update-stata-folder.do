@@ -7,6 +7,7 @@ pub2web ///
 	alt /// 
 	beep ///
 /*	bootstrap_exit_early */ /// 
+	byxtline ///
 /*	case_predict (manually add to txtvarlist) */  /// 
 	clean_row_vector ///
 /* 	csvvars (manually add to txtvarlist) */  /// 
