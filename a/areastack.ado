@@ -1,4 +1,4 @@
-*! $Id: personal/a/areastack.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/09 00:26:40 (revision fbd71caf48b0 by user keith) $
+*! $Id: personal/a/areastack.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/09 00:59:44 (revision 738cda74f9f3 by user keith) $
 *! graph command like "twoway area" which "stacks" the over(), instead of overlaying them.
 
 * This program is similar to "twoway area",
@@ -21,6 +21,7 @@
 *! By Keith Kranker
 *! $Date$
 
+cap program drop areastack
 program define areastack, sortpreserve
   version 9
   syntax varlist(min=2 max=2 numeric) [if] [in] , ///
@@ -33,7 +34,7 @@ program define areastack, sortpreserve
 
   tempvar index
   egen `index' = group( `over' ), missing label
-
+  
   summ `index' , meanonly
   local min = r(min)
   local max = r(max)
@@ -48,28 +49,37 @@ program define areastack, sortpreserve
   tempvar cum
   bys `x' (`index') : gen `cum' = sum(`y') if `touse'
   lab var `cum' "`:var lab `y''"
+browse `index' `over' `y' `cum'
 
   di as txt  "-areastack- will execute the following command:"
   di as input _col(4) ". graph twoway"
 
-  forvalues c=1/`max' {
+  local c=`max'
+  while `c'>=1 {
     local clab : label ( `index' ) `c'
+	local clab = subinstr(`"`clab'"',`"""',"",.)
 
     local g`c'          `"(area `cum' `x' if `touse' & `index'==`c' )"'
 
-    di as input _col(8) `"(area cumulative_`y' `x' if \`touse' & `over'==`clab')"'
+    di as input _col(8) `"(area stacked[`y'] `x' if \`touse' & `over'=="' as res `"`clab'"' as input ")"
 
-    local thislab `"label(`=`max'+1-`c'' `"`clab'"')"'
-    local labels : list thislab | labels
-    local ord    : list c | ord
+    local labels `"label(`=`max'+1-`c'' "`clab'") `labels'"'
+    local ord    : list ord | c
 
-    local graphlist "\`g`c'' `graphlist'"
+    local graphlist "`graphlist' \`g`c''"
 
     local --c
   }
 
-  di as input _col(8)   `", legend(order(`ord') `labels') "' _n _col(10) _n _col(10) `"`options'"'
+  di as input _col(8)   `", legend(order(`ord') `labels')"' _n _col(10) `"`options'"'
 
-  graph twoway `graphlist', legend(order(`ord') `labels') ytitle("Cumulative" `"`:var lab `y''"') `options'
+  graph twoway `graphlist', legend(order(`ord') `labels') `options'
 end
+
+keep if dhs_c==1
+	areastack raw_currently_alive_dhs t , over(age) 
+	
+	exit
+		by(dhs_c, title( "Unweighted number of observations") noyrescale) legend(col(4) size(small)) ///
+		ylab(minmax,nogrid) xline(0) name(n1,replace)
 
