@@ -1,4 +1,4 @@
-*! $Id: personal/a/areastack.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/09 00:59:44 (revision 738cda74f9f3 by user keith) $
+*! $Id: personal/a/areastack.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/09 01:01:34 (revision 41795d329e0a by user keith) $
 *! graph command like "twoway area" which "stacks" the over(), instead of overlaying them.
 
 * This program is similar to "twoway area",
@@ -21,7 +21,6 @@
 *! By Keith Kranker
 *! $Date$
 
-cap program drop areastack
 program define areastack, sortpreserve
   version 9
   syntax varlist(min=2 max=2 numeric) [if] [in] , ///
@@ -75,11 +74,3 @@ browse `index' `over' `y' `cum'
 
   graph twoway `graphlist', legend(order(`ord') `labels') `options'
 end
-
-keep if dhs_c==1
-	areastack raw_currently_alive_dhs t , over(age) 
-	
-	exit
-		by(dhs_c, title( "Unweighted number of observations") noyrescale) legend(col(4) size(small)) ///
-		ylab(minmax,nogrid) xline(0) name(n1,replace)
-
