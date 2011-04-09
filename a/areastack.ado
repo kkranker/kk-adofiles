@@ -1,4 +1,4 @@
-*! $Id: personal/a/areastack.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/08 19:54:41 (revision 8b3a24e04d24 by user keith) $
+*! $Id: personal/a/areastack.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/09 00:26:40 (revision fbd71caf48b0 by user keith) $
 *! graph command like "twoway area" which "stacks" the over(), instead of overlaying them.
 
 * This program is similar to "twoway area",
@@ -47,7 +47,7 @@ program define areastack, sortpreserve
 
   tempvar cum
   bys `x' (`index') : gen `cum' = sum(`y') if `touse'
-  var lab `cum' "`:var lab `y''"
+  lab var `cum' "`:var lab `y''"
 
   di as txt  "-areastack- will execute the following command:"
   di as input _col(4) ". graph twoway"
@@ -59,7 +59,8 @@ program define areastack, sortpreserve
 
     di as input _col(8) `"(area cumulative_`y' `x' if \`touse' & `over'==`clab')"'
 
-    local labels `"label(`=`max'+1-`c'' "`clab'") `labels'"'
+    local thislab `"label(`=`max'+1-`c'' `"`clab'"')"'
+    local labels : list thislab | labels
     local ord    : list c | ord
 
     local graphlist "\`g`c'' `graphlist'"
