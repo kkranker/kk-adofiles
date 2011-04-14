@@ -1,13 +1,16 @@
 v 3
 d margfx2.
 d
-d Wrapper to add ereturn results from margfx.ado program (by Jonah B. Gelbach),
+d Wrapper to add ereturn results to margfx.ado program's output (by Jonah B. Gelba
+d ach),
 d 
 d This function passes any arguments into margfx,
 d then returns its results into an estimates table
 d (so that it can be used by outreg, etc.)
 d 
-d margfx2 was developed with Jonah's file, version 4.3 27Aug04)
+d margfx2 was developed with Jonah's margfx.ado file (version 4.3 27Aug04).
+d This program is required.  As of today, you can download it at http://gelbach.la
+d aw.yale.edu/
 d 
 d Wrapper by Keith Kranker
 d $
@@ -15,5 +18,5 @@ f m/margfx2.ado
 
 d
 d Program by Keith Kranker
-* This Stata package file created on  8 Apr 2011
+* This Stata package file created on 14 Apr 2011
 * with Keith Kranker's package -pub2web-

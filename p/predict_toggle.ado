@@ -1,4 +1,4 @@
-*! $Id: personal/p/predict_toggle.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/07 22:08:19 (revision bfe509f02eee by user keith) $
+*! $Id: personal/p/predict_toggle.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/14 15:10:16 (revision 32a3a406f989 by user keith) $
 *! After a regression, predict with X1=0, X1=1, then calculate the difference
 
 * This is a post-estimation command.  
@@ -43,6 +43,7 @@ program define predict_toggle, eclass
 		   svy /// prefix "mean ___ " with "svy:"  survey is turned on automatically if regress used survey.
 		   meanopts(string) /// options to pass to mean ___
 		   Keep /// create a set of te_y variables for all varables (automatically on if only 1 variable)
+		   PREFix(string) /// prefix te_* variables with this string
 		   * /// other options passed to predict 
 		]
 	
@@ -139,7 +140,7 @@ program define predict_toggle, eclass
 							noisily di as txt "Replaced variable _`vx'`abbrev'"
 							drop _`vx'`abbrev'
 						}
-						clonevar _`vx'`abbrev' = ``vx''
+						clonevar `prefix'_`vx'`abbrev' = ``vx''
 					}
 					if !regexm("`vx'","^yhat") {
 						tempname a`vx'
@@ -204,7 +205,7 @@ program define predict_toggle, eclass
 						noisily di as txt "Replaced variable _`vx'"
 						drop _`vx'
 					}
-					clonevar _`vx' = ``vx''
+					clonevar `prefix'_`vx' = ``vx''
 				}
 				else {
 					tempname a`vx'

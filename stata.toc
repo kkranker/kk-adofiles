@@ -3,7 +3,7 @@ d Stata programs by Keith Kranker
 d Programs by Keith Kranker, Ph.D. Candidate, Department of Economics, University 
 d of Maryland
 d
-d Last updated:  8 Apr 2011
+d Last updated: 14 Apr 2011
 
 p all Bulk download all Stata program(s) by Keith Kranker
 
@@ -24,7 +24,7 @@ p foldergraphexport  Automatic graph conversion of a n entire folder
 p getcmds_personal  Run getcmds on PERSONAL and PLUS system directories (a hack of getcmds)
 p graphbetas  Rudimentary program to graph beta coefficients after a regression (for example)
 p kak_  A "helper" program.
-p margfx2  Wrapper to add ereturn results from margfx.ado program (by Jonah B. Gelbach),
+p margfx2  Wrapper to add ereturn results to margfx.ado program's output (by Jonah B. Gelbach), ach),
 p mat2txt2  Export a matrix to text file.
 p mat_blockdiag  Combine to diagonal matrices into a single matrix (preserves row/column names)
 p meantab  Create a "summary statistics" table.
@@ -44,5 +44,5 @@ p varlist_type  Separate a varlist into macros containing of string/binary/conti
 p xilabel  Quickly "clean up" variable labels for variables created by the [xi : ] command. .
 p xtdesc  Synonym for xtdes
 
-* This Stata table of contents (stata.toc) file created on  8 Apr 2011
+* This Stata table of contents (stata.toc) file created on 14 Apr 2011
 * with Keith Kranker's package -pub2web-

@@ -1,11 +1,12 @@
-*! $Id: personal/m/margfx2.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/29 00:09:46 (revision 4b119ce29a6c by user keith) $
-*! Wrapper to add ereturn results from margfx.ado program (by Jonah B. Gelbach), 
+*! $Id: personal/m/margfx2.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/14 19:09:21 (revision 1d4e1d018da6 by user keith) $
+*! Wrapper to add ereturn results to margfx.ado program's output (by Jonah B. Gelbach), 
 *!
 *! This function passes any arguments into margfx,
 *! then returns its results into an estimates table
 *! (so that it can be used by outreg, etc.)
 *!
-*! margfx2 was developed with Jonah's file, version 4.3 27Aug04)
+*! margfx2 was developed with Jonah's margfx.ado file (version 4.3 27Aug04).  
+*! This program is required.  As of today, you can download it at http://gelbach.law.yale.edu/
 *!
 *! Wrapper by Keith Kranker
 *! $Date$

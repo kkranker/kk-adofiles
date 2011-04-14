@@ -1,4 +1,4 @@
-$Id: personal/p/predict_toggle.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/29 06:28:18 (revision 0cc1679684a2 by user keith) $
+$Id: personal/p/predict_toggle.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/14 15:10:16 (revision 32a3a406f989 by user keith) $
 After a regression, predict with X1=0, X1=1, then calculate the difference
 
 This is a post-estimation command.  
@@ -30,6 +30,7 @@ predict_toggle x x2, arraytreatments
 		   svy /// prefix "mean ___ " with "svy:"
 		   meanopts(string) /// options to pass to mean ___
 		   Keep /// create a set of te_y variables for all varables (automatically on if only 1 variable)
+		   PREFix(string) /// prefix te_* variables with this string
 		   * /// other options passed to predict 
 		]
 		
