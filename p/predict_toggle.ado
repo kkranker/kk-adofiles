@@ -1,4 +1,4 @@
-*! $Id: personal/p/predict_toggle.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/14 15:10:16 (revision 32a3a406f989 by user keith) $
+*! $Id$
 *! After a regression, predict with X1=0, X1=1, then calculate the difference
 
 * This is a post-estimation command.  
@@ -54,19 +54,20 @@ program define predict_toggle, eclass
 	else                   local wtexp "[`weight' `exp']"
 		
 	cap assert e(sample) == `touse'
-	if _rc di as txt "note: This program is making out-of-sample predictions.  Use " `""if e(sample)""' " to change this behavior."
+	if _rc di as txt "predict_toggle: making out-of-sample predictions.  Use " `""if e(sample)""' " to change this behavior."
 
-	if missing("`svy'") & e(prefix)=="svy" {
-		local svy "svy:"
+	if !missing("`svy'") & !missing("`wtexp'") {
+		di as error `"predict_toggle: Select one of "`svy'" or "`wtexp'" "'
+		error 198
 	}
-	if !missing("`svy'") {
-		local svy "svy:"
-		di as txt "note: survey weights from svyset will be used."
-	}
-
-	if missing("`svy'") & missing("`wtexp'") & !missing("`e(wtype)'") {
+	else if missing("`svy'") & missing("`wtexp'") & !missing("`e(wtype)'") {
 	    local wtexp "[`e(wtype)' `e(wexp)'] "
-		di as txt "note: weights from previous regression will be used. " as res "`wtexp'"
+		di as txt "predict_toggle: weights from previous regression will be used. " as res "`wtexp'"
+	}
+
+	if !missing("`svy'") | ( missing("`svy'") & "`e(prefix)'"=="svy")  {
+		local svy "svy:"
+		di as txt "predict_toggle: survey weights from svyset will be used."
 	}
 
 	if e(cmd)=="regress" di as txt "note: Expect ate=atet=ateu in a linear model"
@@ -75,7 +76,7 @@ program define predict_toggle, eclass
 	local y = e(depvar)
 	local x_all : colfullnames e(b)
 	if !`: list varnames in x_all' 	{
-		di as error "note: variable names in command must be independent variables in the previous regression."
+		di as error "predict_toggle: variable names in command must be independent variables in the previous regression."
 		error 20742
 	}
 	
@@ -224,10 +225,9 @@ program define predict_toggle, eclass
 	
 	ereturn matrix table `table' 
 	
-	noisily di "e_scalars: `e_scalars'"
-	 if !missing("`e_scalars'") {
+	if !missing("`e_scalars'") {
+		noisily di "e_scalars: `e_scalars'"
 		foreach vx of local e_scalars {	
-			noisily di `"save a`vx' = ``vx'' "'
 			if !regexm("`vx'","^yhat") ereturn scalar `vx' = ``vx''
 		}
 	}
