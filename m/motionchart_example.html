@@ -2,12 +2,13 @@
   <head> 
     <style type="text/css">
         body{font-family:Helvetica,Arial,sans-serif;}
-        h1{font-size:1.25em;}
+        h1{font-size:1.15em;}
+        h1{font-size:1.075em;}
     </style>
-    <script type="text/javascript" src="http://www.google.com/jsapi"></script> 
-    <script type="text/javascript"> 
-      google.load('visualization', '1', {'packages':['motionchart']}); 
-      google.setOnLoadCallback(drawChart); 
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load('visualization', '1', {'packages':['motionchart']});
+      google.setOnLoadCallback(drawChart);
       function drawChart() { 
         var data = new google.visualization.DataTable(); 
         data.addColumn('string', 'id'); 
@@ -38,6 +39,7 @@
    
   <body> 
    <h1>Blood Pressure</h1>
+   <h2>Example motionchart: created in Stata with motionchart.ado</h2>
    <div id="chart_div" style="width: 600px; height: 400px;"></div> 
   </body> 
 </html> 

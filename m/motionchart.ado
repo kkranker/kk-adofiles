@@ -1,4 +1,4 @@
-*! $Id: personal/m/motionchart.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/29 00:09:46 (revision 4b119ce29a6c by user keith) $
+*! $Id: personal/m/motionchart.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/14 20:38:06 (revision ca0de793b584 by user keith) $
 *! Create graphs of your data, from Stata, as a Google Motion Chart
 
 * Create an HTML file that will graph your data as a Google Motion Chart.  
@@ -19,7 +19,8 @@ syntax varlist(min=2)							///  first variable must be the ID of the unit (as a
 	[if] [in]   								///  restrict data
 	[ ,     									///  options
 	REPlace 									///  replace using output file
-	TITle(str) TEXt(str) NOTe(str) TIMestamp    ///  Add titles or notes to output file
+	TITle(str) SUBTitle(str)                    ///  Add titles or notes to output file
+	TEXt(str) NOTe(str) TIMestamp               ///  
 	Height(integer 400) Width(integer 600)		///  Height/Width of the chart in pixels.
 	State(string)							    ///  Initial state for getState()
 	HIDEpanel  									///  hides the right hand panel.
@@ -49,12 +50,13 @@ file write `myfile' ///
 		`"  <head> "' _n ///
 		`"    <style type="text/css">"' _n ///
 		`"        body{font-family:Helvetica,Arial,sans-serif;}"' _n ///
-		`"        h1{font-size:1.25em;}"' _n ///
+		`"        h1{font-size:1.15em;}"' _n ///
+		`"        h1{font-size:1.075em;}"' _n ///
 		`"    </style>"' _n ///
-		`"    <script type="text/javascript" src="http://www.google.com/jsapi"></script> "' _n ///
-		`"    <script type="text/javascript"> "' _n ///
-		`"      google.load('visualization', '1', {'packages':['motionchart']}); "' _n ///
-		`"      google.setOnLoadCallback(drawChart); "' _n ///
+		`"    <script type="text/javascript" src="https://www.google.com/jsapi"></script>"' _n ///
+		`"    <script type="text/javascript">"' _n ///
+		`"      google.load('visualization', '1', {'packages':['motionchart']});"' _n ///
+		`"      google.setOnLoadCallback(drawChart);"' _n ///
 		`"      function drawChart() { "' _n ///
 		`"        var data = new google.visualization.DataTable(); "' _n 
  
@@ -142,31 +144,20 @@ file write `myfile' ///
   
   
 * Insert Title
-if length(`"`title'"') {
-	file write `myfile' `"   <h1>`title'</h1>"' _n   
-	}
-
+if !missing(`"`title'"')     file write `myfile' `"   <h1>`title'</h1>"' _n  
+if !missing(`"`subtitle'"')  file write `myfile' `"   <h2>`subtitle'</h2>"' _n  
 	
 * Insert Text 
-if length(`"`text'"') {
-	file write `myfile' `"   <p>`text'</p>"' _n   
-	}
+if !missing(`"`text'"')      file write `myfile' `"   <p>`text'</p>"' _n   
 
 * Insert Chart	
-file write `myfile'     `"   <div id="chart_div" style="width: `width'px; height: `height'px;"></div> "' _n
-
+file write `myfile' `"   <div id="chart_div" style="width: `width'px; height: `height'px;"></div> "' _n
 
 * Insert Note 
-if length(`"`note'"') {
-	file write `myfile' `"   <p>`note'</p>"' _n   
-	}
-	
-	
+if !missing(`"`note'"')      file write `myfile' `"   <p>`note'</p>"' _n   
+
 * Insert Timestamp 
-if "`timestamp'"=="timestamp" {
-	file write `myfile' `"   <p><i>$S_DATE $S_TIME</i></p>"' _n
-	}
-	
+if !missing(`"`timestamp'"') file write `myfile' `"   <p><small><i>$S_DATE $S_TIME</i></small></p>"' _n
 	
 * HTML Footer 
 file write `myfile' ///	
