@@ -1,4 +1,4 @@
-*! $Id$
+*! $Id: personal/p/predict_toggle.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/15 03:47:16 (revision 5afbe87081f8 by user keith) $
 *! After a regression, predict with X1=0, X1=1, then calculate the difference
 
 * This is a post-estimation command.  
@@ -136,7 +136,7 @@ program define predict_toggle, eclass
 				// save a copy of variable if one treatement variable
 				if (1==`: list sizeof varlist' | !missing("`keep'")) {
 					if regexm("`vx'","^(yhat|te)") {
-						cap confirm new var _`vx'`abbrev'
+						cap confirm new var `prefix'_`vx'`abbrev'
 						if _rc {
 							noisily di as txt "Replaced variable _`vx'`abbrev'"
 							drop _`vx'`abbrev'
@@ -201,7 +201,7 @@ program define predict_toggle, eclass
 			
 			// save a copy of variable if one treatement variable
 				if regexm("`vx'","^yhat") {
-					cap confirm new var _`vx'
+					cap confirm new var `prefix'_`vx'
 					if _rc {
 						noisily di as txt "Replaced variable _`vx'"
 						drop _`vx'

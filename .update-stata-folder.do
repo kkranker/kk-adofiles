@@ -70,3 +70,5 @@ foreach file in "c/case_predict.ado" "c/case_predict.hlp" {
 }
 file close addp
 
+
+shell hg commit --addremove -m"Automatic upgrade of Keith's ado/personal directory $S_DATE $S_TIME"
