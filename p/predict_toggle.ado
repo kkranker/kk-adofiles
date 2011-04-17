@@ -1,4 +1,4 @@
-*! $Id: personal/p/predict_toggle.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/15 03:47:16 (revision 5afbe87081f8 by user keith) $
+*! $Id: personal/p/predict_toggle.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/17 21:49:43 (revision 6f68c01905f9 by user keith) $
 *! After a regression, predict with X1=0, X1=1, then calculate the difference
 
 * This is a post-estimation command.  
@@ -43,7 +43,8 @@ program define predict_toggle, eclass
 		   svy /// prefix "mean ___ " with "svy:"  survey is turned on automatically if regress used survey.
 		   meanopts(string) /// options to pass to mean ___
 		   Keep /// create a set of te_y variables for all varables (automatically on if only 1 variable)
-		   PREFix(string) /// prefix te_* variables with this string
+		   PREFix(string) /// prefix te_* variables with this string.  Default is "_"
+		   noREPlace /// don't overwrite  _yhat variables (if they exist)
 		   * /// other options passed to predict 
 		]
 	
@@ -80,6 +81,8 @@ program define predict_toggle, eclass
 		error 20742
 	}
 	
+	if missing("`prefix'") local prefix "_"
+	
 	local outvars yhat yhat_t yhat_u te tet teu 
 	tempvar  Bckp `outvars' anytreat
 	tempname vx_mean vx_table table
@@ -94,15 +97,17 @@ program define predict_toggle, eclass
 		local vn=0
 		foreach v of local varlist {
 		  local ++vn
-		  local abbrev = "_" + substr("`v'",1,`=c(namelen)-5')
 		  assert inlist(`v',0,1,.) if `touse' // check that treatment is dummy variable
-			
+		
+		  if 1==`: list sizeof varlist' local abbrev = ""
+		  else                          local abbrev = "_" + subinstr(abbrev("`v'",`=c(namelen)-length("`prefix'")-8'),"~","_",.)  
+
 		  qui {
 			clonevar `Bckp' = `v'
 
 			replace `v' = 0 
 			predict double `yhat_u' if `touse', `options'
-			label var      `yhat_u' "Predicted (y|`v'=0) `: var lab `y''"
+			label var      `yhat_u' "Predicted (y|`v'=0) !`: var lab `y''"
 
 			replace `v' = 1 
 			predict double `yhat_t' if `touse', `options'
@@ -133,20 +138,25 @@ program define predict_toggle, eclass
 				if   "`vx'"=="yhat" mat `vx_table' = ( `vx_mean') 
 				else                mat `vx_table' = ( `vx_table' , `vx_mean') 
 
-				// save a copy of variable if one treatement variable
+				// save a copy of variable if one treatement variable  or if "Keep" option is on
 				if (1==`: list sizeof varlist' | !missing("`keep'")) {
-					if regexm("`vx'","^(yhat|te)") {
-						cap confirm new var `prefix'_`vx'`abbrev'
-						if _rc {
-							noisily di as txt "Replaced variable _`vx'`abbrev'"
-							drop _`vx'`abbrev'
+					// variables
+					if ( `vn'==1 & "`vx'"=="yhat" ) | ( "`vx'"=="te" ) {
+						if "`vx'"=="yhat" local mkvar = "`prefix'`vx'"
+						else              local mkvar = "`prefix'`vx'`abbrev'"
+						cap confirm new var `mkvar', exact
+						if _rc & "`replace'"!="noreplace" {
+							drop `mkvar'
+							noisily di as txt "Replaced variable `mkvar'"
 						}
-						clonevar `prefix'_`vx'`abbrev' = ``vx''
+						clonevar `mkvar' = ``vx''
+						local out_vars_final `out_vars_final' `mkvar'
 					}
+					// scalars
 					if !regexm("`vx'","^yhat") {
-						tempname a`vx'
-						scalar  `a`vx'' = `vx_mean'[1,1]  // save for ereturn (below)
-						local e_scalars `e_scalars' a`vx'
+						tempname a`vx'`abbrev'
+						scalar  `a`vx'`abbrev'' = `vx_mean'[1,1]  // save for ereturn (below)
+						local e_scalars `e_scalars' a`vx'`abbrev'
 					}
 				}
 			}  // end loop thru outcome variables
@@ -164,8 +174,6 @@ program define predict_toggle, eclass
 	else {
 
 		// Arraytreatments case 
-		local abbrev = ""
-		
 		foreach v of local varlist {
 			tempvar B`v'
 			assert inlist(`v',0,1,.) // check that treatment is dummy variable
@@ -201,12 +209,13 @@ program define predict_toggle, eclass
 			
 			// save a copy of variable if one treatement variable
 				if regexm("`vx'","^yhat") {
-					cap confirm new var `prefix'_`vx'
+					cap confirm new var `prefix'`vx', exact
 					if _rc {
-						noisily di as txt "Replaced variable _`vx'"
-						drop _`vx'
+						drop `prefix'`vx'
+						noisily di as txt "Replaced variable `prefix'`vx'"
 					}
-					clonevar `prefix'_`vx' = ``vx''
+					clonevar `prefix'`vx' = ``vx''
+					local out_vars_final `out_vars_final' `prefix'`vx'
 				}
 				else {
 					tempname a`vx'
@@ -225,8 +234,10 @@ program define predict_toggle, eclass
 	
 	ereturn matrix table `table' 
 	
+	noisily di as txt "New variables:" as res _col(18) "`out_vars_final'"
+	
 	if !missing("`e_scalars'") {
-		noisily di "e_scalars: `e_scalars'"
+		noisily di as txt "e_scalars:" as res _col(18) "`e_scalars'"
 		foreach vx of local e_scalars {	
 			if !regexm("`vx'","^yhat") ereturn scalar `vx' = ``vx''
 		}
