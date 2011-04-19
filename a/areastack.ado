@@ -1,4 +1,4 @@
-*! $Id: personal/a/areastack.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/09 01:03:10 (revision 392ffa3e6801 by user keith) $
+*! $Id: personal/a/areastack.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
 *! graph command like "twoway area" which "stacks" the over(), instead of overlaying them.
 
 * This program is similar to "twoway area",

@@ -1,4 +1,4 @@
-*! $Id: personal/b/byxtline.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/08 19:27:14 (revision e4bf07dcdc07 by user keith) $
+*! $Id: personal/b/byxtline.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
 *! Wrapper for "xtline,overlay" that enables the by: prefix.  
 
 * This program exists because you aren't allowed to execute 

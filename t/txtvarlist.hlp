@@ -1,5 +1,5 @@
 {smcl}
-{* $Id: personal/t/txtvarlist.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/28 23:50:32 (revision ab479be1b999 by user keith) $ }
+{* $Id: personal/t/txtvarlist.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
 {* $Date$}{...}
 {cmd:help txtvarlist}
 {hline}
@@ -129,7 +129,7 @@ the text file and then uses the original macros.{p_end}
 
 
 {title:Other Information}
-{* $Id: personal/t/txtvarlist.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/28 23:50:32 (revision ab479be1b999 by user keith) $ }
+{* $Id: personal/t/txtvarlist.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
 {phang}Author: Keith Kranker{p_end}
 
 {phang}$Date${p_end}

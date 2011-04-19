@@ -1,4 +1,4 @@
-*! $Id: personal/g/graphbetas.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/28 23:57:36 (revision fe9ff91d4ae9 by user keith) $
+*! $Id: personal/g/graphbetas.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
 *! Rudimentary program to graph beta coefficients after a regression (for example)
 
 * (1) if you specify something for "find" it will only graph the beta cofficients for the 

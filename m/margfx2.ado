@@ -1,4 +1,4 @@
-*! $Id: personal/m/margfx2.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/14 19:09:21 (revision 1d4e1d018da6 by user keith) $
+*! $Id: personal/m/margfx2.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
 *! Wrapper to add ereturn results to margfx.ado program's output (by Jonah B. Gelbach), 
 *!
 *! This function passes any arguments into margfx,

@@ -1,5 +1,5 @@
 {smcl}
-{* $Id: personal/k/kak_graph.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/28 23:50:32 (revision ab479be1b999 by user keith) $ }
+{* $Id: personal/k/kak_graph.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
 {* $Date$}{...}
 {cmd:help kak_graph}
 {hline}
@@ -69,7 +69,7 @@ Either of the following commands would create the files {it:myfile.emf} and {it:
 
 
 {title:Other Information}
-{* $Id: personal/k/kak_graph.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/28 23:50:32 (revision ab479be1b999 by user keith) $ }
+{* $Id: personal/k/kak_graph.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
 {phang}Author: Keith Kranker{p_end}
 
 {phang}$Date${p_end}

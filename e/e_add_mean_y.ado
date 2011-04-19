@@ -1,4 +1,4 @@
-*! $Id: personal/e/e_add_mean_y.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/29 00:09:46 (revision 4b119ce29a6c by user keith) $
+*! $Id: personal/e/e_add_mean_y.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
 *! Add mean of e(depvar) to ereturn after a regression
 *!
 *! By Keith Kranker

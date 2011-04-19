@@ -1,4 +1,4 @@
-*! $Id: personal/t/txt2notes.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/29 00:09:46 (revision 4b119ce29a6c by user keith) $
+*! $Id: personal/t/txt2notes.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
 *! txt2notes reads in a text file and adds each line as "notes" for the dataset.
 *
 *! By Keith Kranker

@@ -1,5 +1,5 @@
 {smcl}
-{* $Id: personal/d/dropstringvars.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/29 00:09:46 (revision 4b119ce29a6c by user keith) $ }
+{* $Id: personal/d/dropstringvars.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
 {* $Date$}{...}
 {cmd:help dropstringvars}
 {hline}
@@ -45,7 +45,7 @@ Please use caution.  If no {it:{help varlist}} is specified, you could delete a 
 
 
 {title:Other Information}
-{* $Id: personal/d/dropstringvars.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/29 00:09:46 (revision 4b119ce29a6c by user keith) $ }
+{* $Id: personal/d/dropstringvars.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
 {phang}Author: Keith Kranker{p_end}
 
 {phang}$Date${p_end}

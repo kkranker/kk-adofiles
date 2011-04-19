@@ -1,4 +1,4 @@
-*! $Id: personal/t/txtvarlist.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/28 23:50:32 (revision ab479be1b999 by user keith) $
+*! $Id: personal/t/txtvarlist.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
 *! Export a varlist to a text file.
 *
 *! By Keith Kranker

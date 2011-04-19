@@ -1,4 +1,4 @@
-*! $Id: personal/n/npp.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/07 00:05:20 (revision 64e69572e3d4 by user keith) $
+*! $Id: personal/n/npp.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
 *! Open something in Notepad++
 *
 *! By Keith Kranker

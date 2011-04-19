@@ -1,4 +1,4 @@
-*! $Id: personal/e/e_countif.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/29 00:09:46 (revision 4b119ce29a6c by user keith) $
+*! $Id: personal/e/e_countif.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
 *! Add N positive to ereturn after a regression
 
 // program performs 

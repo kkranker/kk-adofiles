@@ -1,4 +1,4 @@
-*! $Id: personal/k/kak_add_return.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/29 00:09:46 (revision 4b119ce29a6c by user keith) $
+*! $Id: personal/k/kak_add_return.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
 *! A "helper" program to quickly add "return" scalars and locals 
 
 * Multiple entries are allowed, and entries are parsed with blanks

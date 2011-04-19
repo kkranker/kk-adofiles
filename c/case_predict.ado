@@ -1,4 +1,4 @@
-*! $Id: personal/c/case_predict.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/29 06:28:18 (revision 0cc1679684a2 by user keith) $
+*! $Id: personal/c/case_predict.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
 *! After a regression, predict with X1=0, X1=1, then calculate the difference
 * 
 * This was like predict_toggle.  Now it's a wrapper for

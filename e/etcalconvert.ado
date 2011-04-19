@@ -1,4 +1,4 @@
-*! $Id: personal/e/etcalconvert.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/08 17:22:17 (revision 219208490805 by user keith) $
+*! $Id: personal/e/etcalconvert.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
 *! Function to convert Ethiopian calendar month/year to Gregorian calendar month/year
 * shifts date by 7 years, 8 months.
 * This is only an approximation of a more complicated conversion process

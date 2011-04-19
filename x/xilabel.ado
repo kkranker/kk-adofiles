@@ -1,4 +1,4 @@
-*! $Id: personal/x/xilabel.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/29 00:09:46 (revision 4b119ce29a6c by user keith) $
+*! $Id: personal/x/xilabel.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
 *! Quickly "clean up" variable labels for variables created by the [xi : ] command.
 
 * Example: Say you used -xi- to create dummies for "race" (variable 

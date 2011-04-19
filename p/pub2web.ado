@@ -1,4 +1,4 @@
-*! $Id: personal/p/pub2web.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/08 19:29:40 (revision 00364d46898d by user keith) $
+*! $Id: personal/p/pub2web.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
 *! Turn a list of your .ado packages into a "usersite" website.
 
 * Input a list of your .ado programs

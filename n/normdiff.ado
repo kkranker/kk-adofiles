@@ -1,4 +1,4 @@
-*! $Id: personal/n/normdiff.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/03/29 06:28:18 (revision 0cc1679684a2 by user keith) $
+*! $Id: personal/n/normdiff.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
 *! Create a table to compare two groups, including normalized differences.
 *
 * For each variable, this program calculates Delta_X  and  T  from forumlas (3) and (4) of 

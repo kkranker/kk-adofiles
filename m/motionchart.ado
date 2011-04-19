@@ -1,4 +1,4 @@
-*! $Id: personal/m/motionchart.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/14 20:38:06 (revision ca0de793b584 by user keith) $
+*! $Id: personal/m/motionchart.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
 *! Create graphs of your data, from Stata, as a Google Motion Chart
 
 * Create an HTML file that will graph your data as a Google Motion Chart.  
