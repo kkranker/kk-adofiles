@@ -1,0 +1,25 @@
+ONE-CLICK SUBSCRIPTION ACCESS TO JOURNALS FROM OFF-CAMPUS
+
+This folder contains an AutoIt scripts for the University of Maryland Research Port
+This program could be easily modified for other universities.
+
+INSTALLATION
+
+1. Download .au3 file. Change directort paths as appropriate for your setup.
+2. Compile the scripts with Autoit3 (and the ModernMenu library)
+3. Launch .exe file.  There will be a new program in your windows taskbar
+
+USE
+
+4. In your intertnet browser, you may navigate to a website 
+   that you cannot access.  However, the University of Maryland
+   library may have a subscription.  Examples include
+     -  jstor.org
+     -  mitpressjournals.org
+     -  wiley.com
+     -  and so on
+5. Right click on icon and click "Firefox" or "Chrome" 
+6. The script will add "http://proxy-um.researchport.umd.edu/login?url=" 
+   to the beginning of the URL and hit enter for you.
+   -->  The program will paste the url prefix into the current tab in your browser of choice.
+   -->  If this is the first time for the day, you need to type in your password
