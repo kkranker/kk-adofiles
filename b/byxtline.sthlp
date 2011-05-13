@@ -1,4 +1,4 @@
-*! $Id: personal/b/byxtline.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
+*! $Id$
 
 byxtline
 Wrapper for "xtline,overlay" that enables the by: prefix.  

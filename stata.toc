@@ -3,7 +3,7 @@ d Stata programs by Keith Kranker
 d Programs by Keith Kranker, Ph.D. Candidate, Department of Economics, University 
 d of Maryland
 d
-d Last updated: 19 Apr 2011
+d Last updated: 13 May 2011
 
 p all Bulk download all Stata program(s) by Keith Kranker
 
@@ -44,5 +44,5 @@ p varlist_type  Separate a varlist into macros containing of string/binary/conti
 p xilabel  Quickly "clean up" variable labels for variables created by the [xi : ] command. .
 p xtdesc  Synonym for xtdes
 
-* This Stata table of contents (stata.toc) file created on 19 Apr 2011
+* This Stata table of contents (stata.toc) file created on 13 May 2011
 * with Keith Kranker's package -pub2web-

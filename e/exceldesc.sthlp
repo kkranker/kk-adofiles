@@ -1,5 +1,5 @@
 {smcl}
-{* $Id: personal/e/exceldesc.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
+{* $Id$ }
 {* $Date$}{...}
 {cmd:help exceldesc}
 {hline}
@@ -64,7 +64,7 @@ When {opt file()} is spedified. It will store the file in your current working d
 {title:Other Information}
 
 {title:Other Information}
-{* $Id: personal/e/exceldesc.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
+{* $Id$ }
 {phang}Author: Keith Kranker{p_end}
 
 {phang}$Date${p_end}

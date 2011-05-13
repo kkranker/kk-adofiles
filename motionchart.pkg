@@ -14,11 +14,11 @@ d
 d .ado file by Keith Kranker
 d $
 f m/motionchart.ado
-f m/motionchart.hlp
+f m/motionchart.sthlp
 f m/motionchart_example.ado
 f m/motionchart_example.html
 
 d
 d Program by Keith Kranker
-* This Stata package file created on 19 Apr 2011
+* This Stata package file created on 13 May 2011
 * with Keith Kranker's package -pub2web-

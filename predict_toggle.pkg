@@ -22,12 +22,12 @@ d * EXAMPLE:
 d set trace on
 d /
 f p/predict_toggle.ado
-f p/predict_toggle.hlp
+f p/predict_toggle.sthlp
 
 d
 d Program by Keith Kranker
-* This Stata package file created on 19 Apr 2011
+* This Stata package file created on 13 May 2011
 * with Keith Kranker's package -pub2web-
 
 f c/case_predict.ado
-f c/case_predict.hlp
+f c/case_predict.sthlp

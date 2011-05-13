@@ -1,5 +1,5 @@
 {smcl}
-{* $Id: personal/e/etcalconvert.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
+{* $Id$ }
 {* $Date$}{...}
 {cmd:help etcalconvert}
 {hline}
@@ -43,7 +43,7 @@ or {browse "http://en.wikipedia.org/wiki/Ethiopian_calendar"} for details.
 
 
 {title:Other Information}
-{* $Id: personal/e/etcalconvert.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
+{* $Id$ }
 {phang}Author: Keith Kranker{p_end}
 
 {phang}$Date${p_end}

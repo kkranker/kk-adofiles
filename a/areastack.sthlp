@@ -1,4 +1,4 @@
-*! $Id: personal/a/areastack.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
+*! $Id$
 
 areastack
 graph command like "twoway area" which "stacks" the over(), instead of overlaying them.

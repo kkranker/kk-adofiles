@@ -1,4 +1,4 @@
-$Id: personal/p/predict_toggle.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
+$Id$
 After a regression, predict with X1=0, X1=1, then calculate the difference
 
 This is a post-estimation command.  

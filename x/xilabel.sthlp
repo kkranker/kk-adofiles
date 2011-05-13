@@ -1,4 +1,4 @@
-*! $Id: personal/x/xilabel.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
+*! $Id$
 *! Quick program to "clean up" variable labels for variables created by the [xi : ] command.
 
 * Example: Say you used -xi- to create dummies for "race" (variable 

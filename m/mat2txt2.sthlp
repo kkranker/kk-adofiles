@@ -1,5 +1,5 @@
 {smcl}
-{* $Id: personal/m/mat2txt2.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
+{* $Id$ }
 {* $Date$}{...}
 {cmd:help mat2txt2}
 {hline}
@@ -92,7 +92,7 @@ view the file in Stata's viewer or with the default Windows program.
 
 
 {title:Other Information}
-{* $Id: personal/m/mat2txt2.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
+{* $Id$ }
 {phang}Author: Keith Kranker{p_end}
 
 {phang}$Date${p_end}

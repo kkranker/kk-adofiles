@@ -54,7 +54,7 @@ view net from "`c(pwd)'"
 local addtopackage
 file open  addp using txtvarlist.pkg , write append
 file write addp _newline 
-foreach file in "c/csvvars.ado" "c/csvvars.hlp" {
+foreach file in "c/csvvars.ado" "c/csvvars.sthlp" {
 	copy "C:/Ado/personal/`file'"  "`c(pwd)'/`file'", replace
 	file write addp "f `file'" _newline 
 }
@@ -64,7 +64,7 @@ file close addp
 local addtopackage
 file open  addp using predict_toggle.pkg , write append
 file write addp _newline 
-foreach file in "c/case_predict.ado" "c/case_predict.hlp" {
+foreach file in "c/case_predict.ado" "c/case_predict.sthlp" {
 	copy "C:/Ado/personal/`file'"  "`c(pwd)'/`file'", replace
 	file write addp "f `file'" _newline 
 }

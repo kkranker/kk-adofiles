@@ -1,5 +1,5 @@
 {smcl}
-{* $Id: personal/n/normdiff.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
+{* $Id$ }
 {* $Date$}{...}
 {cmd:help normdiff}
 {hline}
@@ -103,7 +103,7 @@ The default is ususally {opt format(%10.0g)}.
 {it:Journal of Economic Literature}.  March 2009, Volume XLVII, Number 1. ({browse www.aeaweb.org/articles.php?doi=10.1257/jel.47.1.5:link})
 
 {title:Other Information}
-{* $Id: personal/n/normdiff.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
+{* $Id$ }
 {phang}Author: Keith Kranker{p_end}
 
 {phang}$Date${p_end}

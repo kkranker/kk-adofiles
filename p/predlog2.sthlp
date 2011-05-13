@@ -1,5 +1,5 @@
 {smcl}
-{* $Id: personal/p/predlog2.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
+{* $Id$ }
 {* $Date$}{...}
 {cmd:help predlog2}
 {hline}
@@ -128,7 +128,7 @@ that I have updated the code to work via "modern" Stata code.
 {pstd}The heteroscedastic option is new.
 
 {title:Other Information}
-{* $Id: personal/p/predlog2.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
+{* $Id$ }
 {phang}Author: Keith Kranker{p_end}
 
 {phang}$Date${p_end}

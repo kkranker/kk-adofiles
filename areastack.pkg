@@ -24,9 +24,9 @@ d
 d By Keith Kranker
 d $
 f a/areastack.ado
-f a/areastack.hlp
+f a/areastack.sthlp
 
 d
 d Program by Keith Kranker
-* This Stata package file created on 19 Apr 2011
+* This Stata package file created on 13 May 2011
 * with Keith Kranker's package -pub2web-

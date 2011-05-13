@@ -1,5 +1,5 @@
 {smcl}
-{* $Id: personal/m/motionchart.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
+{* $Id$ }
 {* $Date$}{...}
 {cmd:help motionchart}
 {hline}
@@ -104,7 +104,7 @@ disk drive (e.g., C:\), folder (e.g., C:\my folder\), or file (e.g., C:\my folde
 
 
 {title:Credits}
-{* $Id: personal/m/motionchart.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
+{* $Id$ }
 
 {phang}Stata .ado file by Keith Kranker
 

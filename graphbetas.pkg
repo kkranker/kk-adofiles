@@ -21,9 +21,9 @@ d . graphbetas , find("_IY")
 d . graphbetas , find("eqn1:")        <-- equation name
 d . graphbetas , find("eqn1:_I.*")    <-- .* is a wildcard
 f g/graphbetas.ado
-f g/graphbetas.hlp
+f g/graphbetas.sthlp
 
 d
 d Program by Keith Kranker
-* This Stata package file created on 19 Apr 2011
+* This Stata package file created on 13 May 2011
 * with Keith Kranker's package -pub2web-

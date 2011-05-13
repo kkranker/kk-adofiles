@@ -1,5 +1,5 @@
 {smcl}
-{* $Id: personal/g/getcmds_personal.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
+{* $Id$ }
 {* $Date$}{...}
 {hline}
 help for {hi:getcmds_personal}: Run getcmds on PERSONAL and PLUS system directories
@@ -17,7 +17,7 @@ these are on your computer.
 
 {title:Other Information}
 Customized modification of from getcmds (version 1.0.3, 19jan2006) {p_end}
-{* $Id: personal/g/getcmds_personal.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
+{* $Id$ }
 {phang}Modified by: Keith Kranker{p_end}
 
 {phang}$Date${p_end}

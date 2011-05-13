@@ -1,5 +1,5 @@
 {smcl}
-{* $Id: personal/f/foldercodebook.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
+{* $Id$ }
 {* $Date$}{...}
 {cmd:help foldercodebook}, {cmd:help foldercodebook_sub}
 {hline}
@@ -107,7 +107,7 @@ Nicholas J. Cox. I thank him for the more complicated code related to the
 {it:filespec} file specification.
 
 {title:Other Information}
-{* $Id: personal/f/foldercodebook.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
+{* $Id$ }
 {phang}Author: Keith Kranker{p_end}
 
 {phang}$Date${p_end}

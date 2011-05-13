@@ -20,9 +20,9 @@ d
 d By Keith Kranker
 d 2011/03/28 16:36:00 $
 f p/pub2web.ado
-f p/pub2web.hlp
+f p/pub2web.sthlp
 
 d
 d Program by Keith Kranker
-* This Stata package file created on 19 Apr 2011
+* This Stata package file created on 13 May 2011
 * with Keith Kranker's package -pub2web-

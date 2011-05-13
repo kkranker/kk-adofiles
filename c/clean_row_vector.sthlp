@@ -1,4 +1,4 @@
-*! $Id: personal/c/clean_row_vector.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
+*! $Id$
 
 Help for clean_row_vector.ado
 

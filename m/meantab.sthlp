@@ -1,5 +1,5 @@
 {smcl}
-{* $Id: personal/m/meantab.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
+{* $Id$ }
 {* $Date$}{...}
 {cmd:help meantab}
 {hline}
@@ -180,7 +180,7 @@ are also passed to the {help regress} command for the {opt difference} or {opt t
 
 
 {title:Other Information}
-{* $Id: personal/m/meantab.hlp, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $ }
+{* $Id$ }
 {phang}Author: Keith Kranker{p_end}
 
 {phang}$Date${p_end}
