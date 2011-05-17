@@ -4,7 +4,7 @@ After a regression, predict with X1=0, X1=1, then calculate the difference
 This is a post-estimation command.  
 Suppose you have a dummy variable X. 
 The program will: 
-1. calculate model prediction with X
+1. calculate model prediction with X        (i.e., the -predict- command)
 2. calculate model prediction with X = 0
 3. calculate model prediction with X = 1
 4. calculate difference between 3/4
@@ -23,15 +23,18 @@ predict_toggle x , keep
 predict_toggle x x2, keep
 predict_toggle x x2, arraytreatments
 
-
+SYNTAX
 	syntax varlist [if] [in] [fweight pweight aweight iweight] ///
-		[, ARraytreatments /// turn all varlist vars off for untreated; not one at a time
-		   Quietly         ///
-		   svy /// prefix "mean ___ " with "svy:"
-		   meanopts(string) /// options to pass to mean ___
-		   Keep /// create a set of te_y variables for all varables (automatically on if only 1 variable)
-		   PREFix(string) /// prefix te_* variables with this string
-		   * /// other options passed to predict 
+		[, ARraytreatments  /// turn all varlist vars off for untreated; not one at a time
+		   svy              /// prefix "mean ___ " with "svy:"  (survey is turned on automatically if previous regression also used survey)
+		   MEANOpts(string) /// options to pass to mean ___
+		   Keep             /// create a set of te_y variables for all varables (automatically on if only 1 variable)
+		   MATName(name)    /// a matrix name to store the output in
+		   PREFix(string)   /// prefix te_* variables with this string.  Default is "_"
+		   noREPlace        /// don't overwrite  _yhat variables (if they exist)
+		   Quietly          /// display less output
+		   NOIsily          /// display more output
+		   *                /// other options passed to predict 
 		]
 		
 		

@@ -1,10 +1,10 @@
-*! $Id: personal/p/predict_toggle.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 21:32:59 (revision 7d3ed8801aeb by user keith) $
+*! $Id: personal/p/predict_toggle.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/05/17 21:56:30 (revision 9c84375d6ec8 by user keith) $
 *! After a regression, predict with X1=0, X1=1, then calculate the difference
 
 * This is a post-estimation command.  
 * Suppose you have a dummy variable X. 
 * The program will: 
-* 1. calculate model prediction with X
+* 1. calculate model prediction with X        (i.e., the -predict- command)
 * 2. calculate model prediction with X = 0
 * 3. calculate model prediction with X = 1
 * 4. calculate difference between 3/4
@@ -35,53 +35,72 @@ predict_toggle x x2, keep
 predict_toggle x x2, arraytreatments
 */
 
+cap program drop predict_toggle
 program define predict_toggle, eclass
 	version 9                        
 	syntax varlist [if] [in] [fweight pweight aweight iweight] ///
-		[, ARraytreatments /// turn all varlist vars off for untreated; not one at a time
-		   Quietly         ///
-		   svy /// prefix "mean ___ " with "svy:"  survey is turned on automatically if regress used survey.
-		   meanopts(string) /// options to pass to mean ___
-		   Keep /// create a set of te_y variables for all varables (automatically on if only 1 variable)
-		   matname(name) /// a matrix name to store the output in
-		   PREFix(string) /// prefix te_* variables with this string.  Default is "_"
-		   noREPlace /// don't overwrite  _yhat variables (if they exist)
-		   * /// other options passed to predict 
+		[, ARraytreatments  /// turn all varlist vars off for untreated; not one at a time
+		   svy              /// prefix "mean ___ " with "svy:"  (survey is turned on automatically if previous regression also used survey)
+		   MEANOpts(string) /// options to pass to mean ___
+		   Keep             /// create a set of te_y variables for all varables (automatically on if only 1 variable)
+		   MATName(name)    /// a matrix name to store the output in
+		   PREFix(string)   /// prefix te_* variables with this string.  Default is "_"
+		   noREPlace        /// don't overwrite  _yhat variables (if they exist)
+		   Quietly          /// display less output
+		   NOIsily          /// display more output
+		   *                /// other options passed to predict 
 		]
 	
 	estimates store existing_est
+		
+	cap assert e(sample) == `touse'
+	if _rc di as txt "making out-of-sample predictions.  Use " `""if e(sample)""' " to change this behavior."
 
 	marksample touse 
 	if missing("`weight'") local wtexp ""
 	else                   local wtexp "[`weight' `exp']"
-		
-	cap assert e(sample) == `touse'
-	if _rc di as txt "predict_toggle: making out-of-sample predictions.  Use " `""if e(sample)""' " to change this behavior."
 
 	if !missing("`svy'") & !missing("`wtexp'") {
-		di as error `"predict_toggle: Select one of "`svy'" or "`wtexp'" "'
-		error 198
+		di as error `"You selected both "`svy'" and "`wtexp'". "' as txt `""`wtexp'"  will be ignored. "'
+		local wtexp "" 
+		local svy "svy: "
 	}
 	else if missing("`svy'") & missing("`wtexp'") & !missing("`e(wtype)'") {
-	    local wtexp "[`e(wtype)' `e(wexp)'] "
-		di as txt "predict_toggle: weights from previous regression will be used. " as res "`wtexp'"
+		di as txt "weights from previous regression will be used. " as res "`wtexp'"
+		local wtexp "[`e(wtype)' `e(wexp)'] "
+	}
+	else if !missing("`svy'") | ( missing("`svy'") & strpos("`e(prefix)'","svy") ) {
+		di as txt "survey weights from svyset will be used."
+		local svy "svy: "
+	}
+	else {
+		di as err "predict_toggle not programmed for this case."  "Fix something (about line 75)"
+		error 12345
 	}
 
-	if !missing("`svy'") | ( missing("`svy'") & "`e(prefix)'"=="svy")  {
-		local svy "svy:"
-		di as txt "predict_toggle: survey weights from svyset will be used."
-	}
-
-	if e(cmd)=="regress" di as txt "note: Expect ate=atet=ateu in a linear model"
+	if inlist(e(cmd),"regress","areg","xtreg","newey") di as txt "note: Expect ate=atet=ateu in a linear model"
 	
 	// confirm varlist in list of LHS variables
 	local y = e(depvar)
-	local x_all : colfullnames e(b)
+	local x_all : colnames e(b)
+	if !missing("`noisily'") mac list _y _varlist _x_all
 	foreach v of local varlist {
 		if !`: list v in x_all' {
-			di as txt "predict_toggle: " as res "`v'" as error " will be ignored (not an independent variable in previous regression)"
+			di as res "`v'" as error " will be removed from -varlist- (not an independent variable in previous regression)"
 			local varlist : list varlist - v
 		}
+	}
+	
+	cap assert `: list sizeof varlist' > 0 
+	if _rc {
+		local errno = _rc 
+		di as error "No variables in -varlist-."
+		exit
+	}
+	
+	if ( `: list sizeof varlist' == 1 & "`arraytreatments'"!="" ) {
+		di as error "One variable in -varlist-.  Option -arraytreatments- will be ignored."
+		local arraytreatments = ""
 	}
 	
 	if missing("`prefix'") local prefix "_"
@@ -114,22 +133,22 @@ program define predict_toggle, eclass
 
 			replace `v' = 0 
 			predict double `yhat_u' if `touse', `options'
-			label var      `yhat_u' "Predicted (y|`v'=0) !`: var lab `y''"
+			label var      `yhat_u' "Predicted (y|`v'=0), y=!`: var lab `y''"
 
 			replace `v' = 1 
 			predict double `yhat_t' if `touse', `options'
-			label var      `yhat_t' "Predicted (y|`v'=1) `: var lab `y''"
+			label var      `yhat_t' "Predicted (y|`v'=1), y=`: var lab `y''"
 
 			replace `v' = `Bckp' // restore treatment variables
 			
 			gen double `te' = `yhat_t' - `yhat_u' if `touse'
-			label var  `te' "Treatment Effect `: var lab `y''"
+			label var  `te' "Treatment Effect, y=`: var lab `y''"
 			
 			gen double `tet' = `te' if `v'==1
-			label var  `tet' "Treatment Effect on Treated `: var lab `y''"
+			label var  `tet' "Treatment Effect on Treated, y=`: var lab `y''"
 			
 			gen double `teu' = `te' if `v'==0
-			label var  `teu' "Treatment Effect on Untreated `: var lab `y''"
+			label var  `teu' "Treatment Effect on Untreated, y=`: var lab `y''"
 			
 			foreach vx of local outvars {	
 				
@@ -152,7 +171,8 @@ program define predict_toggle, eclass
 					cap confirm new var `mkvar', exact
 					if _rc & "`replace'"!="noreplace" {
 						drop `mkvar'
-						noisily di as txt "Replaced variable `mkvar'"
+						local replaced_vars `replaced_vars' `mkvar'
+						
 					}
 					clonevar `mkvar' = ``vx''
 					local out_vars_final `out_vars_final' `mkvar'
@@ -221,7 +241,7 @@ program define predict_toggle, eclass
 			cap confirm new var `prefix'`vx', exact
 			if _rc {
 				drop `prefix'`vx'
-				noisily di as txt "Replaced variable `prefix'`vx'"
+				local replaced_vars `replaced_vars' `prefix'`vx'
 			}
 			clonevar `prefix'`vx' = ``vx''
 			local out_vars_final `out_vars_final' `prefix'`vx'
@@ -236,7 +256,9 @@ program define predict_toggle, eclass
 		qui estimates restore existing_est
 		
 	} // end Arraytreatments case
+	
 	return clear
+	noisily di as txt "predict_toggle: Replaced variables " as inp "`replaced_vars'"
 
 	// add to pre-existing ereturn 
 	qui estimates restore existing_est
@@ -245,12 +267,16 @@ program define predict_toggle, eclass
 	if missing("`matname'") ereturn matrix predict_toggle `table' 
 	else                    ereturn matrix `matname'      `table' 
 	
-	if !missing( "`out_vars_final'" ) noisily di as txt "New variables:" as res _col(18) "`out_vars_final'"
+	if !missing( "`out_vars_final'" ) {
+		noisily di as txt _n "New variables:" 
+		codebook `out_vars_final', compact
+		}
 	
 	if !missing("`e_scalars'") {
-		noisily di as txt "New e() scalars:" as res _col(18) "`e_scalars'"
+		noisily di as txt _n "New e() scalars:" as res _col(18) "`e_scalars'"
 		foreach vx of local e_scalars {	
 			if !regexm("`vx'","^yhat") ereturn scalar `vx' = ``vx''
+			di as txt "e(`vx')" _col(12) as res ``vx''
 		}
 	}
 

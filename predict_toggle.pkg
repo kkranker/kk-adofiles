@@ -5,7 +5,7 @@ d After a regression, predict with X1=0, X1=1, then calculate the difference
 d This is a post-estimation command.
 d Suppose you have a dummy variable X.
 d The program will:
-d 1. calculate model prediction with X
+d 1. calculate model prediction with X        (i.e., the -predict- command)
 d 2. calculate model prediction with X = 0
 d 3. calculate model prediction with X = 1
 d 4. calculate difference between 3/4
@@ -26,7 +26,7 @@ f p/predict_toggle.sthlp
 
 d
 d Program by Keith Kranker
-* This Stata package file created on 13 May 2011
+* This Stata package file created on 17 May 2011
 * with Keith Kranker's package -pub2web-
 
 f c/case_predict.ado
