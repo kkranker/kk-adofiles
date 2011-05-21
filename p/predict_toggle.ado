@@ -1,4 +1,4 @@
-*! $Id: personal/p/predict_toggle.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/05/17 21:56:30 (revision 9c84375d6ec8 by user keith) $
+*! $Id: personal/p/predict_toggle.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/05/21 21:47:30 (revision 4be98ee92589 by user keith) $
 *! After a regression, predict with X1=0, X1=1, then calculate the difference
 
 * This is a post-estimation command.  
@@ -33,6 +33,12 @@ reg y x x2 z
 predict_toggle x , keep
 predict_toggle x x2, keep
 predict_toggle x x2, arraytreatments
+
+replace y = .25 if y<.25
+tobit y x x2 z , ll
+predict_toggle x , ystar(.25,.)           // these two specifications are identical
+predict_toggle x , predict(ystar(.25,.))
+
 */
 
 cap program drop predict_toggle
@@ -48,19 +54,24 @@ program define predict_toggle, eclass
 		   noREPlace        /// don't overwrite  _yhat variables (if they exist)
 		   Quietly          /// display less output
 		   NOIsily          /// display more output
+		   CODEBook         /// dsplay codebook, compact for new variables
+		   PREDict(string)  /// other options passed to predict (similar to mfx syntax)
 		   *                /// other options passed to predict 
 		]
 	
 	estimates store existing_est
-		
+	
+	marksample touse
 	cap assert e(sample) == `touse'
-	if _rc di as txt "making out-of-sample predictions.  Use " `""if e(sample)""' " to change this behavior."
+	if _rc di as txt "Current sample is not identical to estimation sample for previous command. Consider using " as res `""if e(sample)""' as txt " to change this behavior."
 
-	marksample touse 
 	if missing("`weight'") local wtexp ""
 	else                   local wtexp "[`weight' `exp']"
 
-	if !missing("`svy'") & !missing("`wtexp'") {
+	if missing("`svy'") & !strpos("`e(prefix)'","svy") & missing("`wtexp'") & missing("`e(wtype)'") {
+		di as txt `"No survey weights selected. All calculations are unweighted."'
+		}
+	else if !missing("`svy'") & !missing("`wtexp'") {
 		di as error `"You selected both "`svy'" and "`wtexp'". "' as txt `""`wtexp'"  will be ignored. "'
 		local wtexp "" 
 		local svy "svy: "
@@ -74,7 +85,7 @@ program define predict_toggle, eclass
 		local svy "svy: "
 	}
 	else {
-		di as err "predict_toggle not programmed for this case."  "Fix something (about line 75)"
+		di as err "predict_toggle not programmed for this case."  "Fix something in .ado file (at or about line 63)"
 		error 12345
 	}
 
@@ -109,7 +120,7 @@ program define predict_toggle, eclass
 	tempvar  Bckp `outvars' anytreat
 	tempname vx_mean vx_table table
 
-	qui predict double `yhat' if `touse', `options'
+	predict double `yhat' if `touse', `predict' `options'
 	label var          `yhat' "Predicted (y|X)"
 
 	if missing("`arraytreatments'") {
@@ -132,12 +143,12 @@ program define predict_toggle, eclass
 			clonevar `Bckp' = `v'
 
 			replace `v' = 0 
-			predict double `yhat_u' if `touse', `options'
-			label var      `yhat_u' "Predicted (y|`v'=0), y=!`: var lab `y''"
+			predict double `yhat_u' if `touse', `predict' `options'
+			label var      `yhat_u' "Predicted (y|`v'=0),`options' y=!`: var lab `y''"
 
 			replace `v' = 1 
-			predict double `yhat_t' if `touse', `options'
-			label var      `yhat_t' "Predicted (y|`v'=1), y=`: var lab `y''"
+			predict double `yhat_t' if `touse', `predict' `options'
+			label var      `yhat_t' "Predicted (y|`v'=1),`options' y=`: var lab `y''"
 
 			replace `v' = `Bckp' // restore treatment variables
 			
@@ -210,8 +221,8 @@ program define predict_toggle, eclass
 			qui replace `v' = 0 
 		}
 		
-		qui predict double `yhat_u' if `touse', `options'
-		label var          `yhat_u' "Predicted (y|all treatment variables=0) `: var lab `y''"
+		predict double `yhat_u' if `touse', `predict' `options'
+		label var          `yhat_u' "Predicted (y|all treatment variables=0) `options' `: var lab `y''"
 	
 		foreach v of local varlist {
 			qui replace `v' = `B`v'' //  restore treatment variables
@@ -258,7 +269,7 @@ program define predict_toggle, eclass
 	} // end Arraytreatments case
 	
 	return clear
-	noisily di as txt "predict_toggle: Replaced variables " as inp "`replaced_vars'"
+	if !missing(`"`replaced_vars'"') noisily di as txt "The variables " as err "`replaced_vars'" as txt " were dropped/overwritten."
 
 	// add to pre-existing ereturn 
 	qui estimates restore existing_est
@@ -266,17 +277,19 @@ program define predict_toggle, eclass
 	
 	if missing("`matname'") ereturn matrix predict_toggle `table' 
 	else                    ereturn matrix `matname'      `table' 
-	
+
 	if !missing( "`out_vars_final'" ) {
-		noisily di as txt _n "New variables:" 
-		codebook `out_vars_final', compact
+		if !missing("`codebook'") {
+			noisily di as txt _n "New variables: "  as res "`out_vars_final'"	
+			codebook `out_vars_final', compact
 		}
-	
+		else if !missing( "`out_vars_final'" ) noisily di as txt _n "New variables: "  as res `"{stata codebook `out_vars_final', compact:`out_vars_final'}"'
+	}
+
 	if !missing("`e_scalars'") {
-		noisily di as txt _n "New e() scalars:" as res _col(18) "`e_scalars'"
+		noisily di as txt _n "New e() scalars: " as res "`e_scalars'" 
 		foreach vx of local e_scalars {	
 			if !regexm("`vx'","^yhat") ereturn scalar `vx' = ``vx''
-			di as txt "e(`vx')" _col(12) as res ``vx''
 		}
 	}
 

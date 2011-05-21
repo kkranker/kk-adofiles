@@ -23,6 +23,12 @@ predict_toggle x , keep
 predict_toggle x x2, keep
 predict_toggle x x2, arraytreatments
 
+replace y = .25 if y<.25
+tobit y x x2 z , ll
+predict_toggle x , ystar(.25,.)           // these two specifications are identical
+predict_toggle x , predict(ystar(.25,.))
+
+
 SYNTAX
 	syntax varlist [if] [in] [fweight pweight aweight iweight] ///
 		[, ARraytreatments  /// turn all varlist vars off for untreated; not one at a time
@@ -34,9 +40,10 @@ SYNTAX
 		   noREPlace        /// don't overwrite  _yhat variables (if they exist)
 		   Quietly          /// display less output
 		   NOIsily          /// display more output
+		   CODEBook         /// dsplay codebook, compact for new variables
+		   PREDict(string)  /// other options passed to predict (similar to mfx syntax)
 		   *                /// other options passed to predict 
-		]
-		
+		]		
 		
 By Keith Kranker
 $Date$
