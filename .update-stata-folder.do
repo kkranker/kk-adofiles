@@ -46,7 +46,7 @@ pub2web ///
 	xilabel /// 
 	xtdesc ///
 	, replace author( "Keith Kranker") ///
-	intro( "Programs by Keith Kranker, Ph.D. Candidate, Department of Economics, University of Maryland")
+	intro( "Programs by Keith Kranker, Ph.D. Candidate, Department of Economics, University of Maryland") notimestamp
 
 view net from "`c(pwd)'"
 
@@ -69,6 +69,5 @@ foreach file in "c/case_predict.ado" "c/case_predict.sthlp" {
 	file write addp "f `file'" _newline 
 }
 file close addp
-
 
 shell hg commit --addremove -m"Automatic upgrade of Keith's ado/personal directory $S_DATE $S_TIME"

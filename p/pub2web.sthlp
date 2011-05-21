@@ -28,12 +28,13 @@ pub2web
                                 (where x is the first letter in package's name)
     replace                   overwrite files
     noSUBfolders              don't put files in subfolders.
-    noCopy                    do not copy files/
+    noCopy                    do not copy files
+    noTimestamp               do not put a timestamp in .pkg files
     Intro(string)             add an introduction to your stata.toc file
     Width(integer 80)         max width of text files
     Cline(integer 2)          comment line #__ of .ado file has title of package
                                 cline is first line printed into .pkg file
-	maxintro(integer 40)      max number of intro lines in .pkg file
+    maxintro(integer 40)      max number of intro lines in .pkg file
     ]  
 
 

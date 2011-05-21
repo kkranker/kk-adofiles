@@ -1,4 +1,4 @@
-*! $Id: personal/p/pub2web.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
+*! $Id: personal/p/pub2web.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/05/21 21:56:50 (revision fc8528809aa0 by user keith) $
 *! Turn a list of your .ado packages into a "usersite" website.
 
 * Input a list of your .ado programs
@@ -28,6 +28,7 @@ syntax ///
 		replace /// overwrite files
 		noSUBfolders /// don't put files in subfolders.
 		noCopy /// do not copy files/
+		noTimestamp /// do not put a timestamp in .pkg files
 		Intro(string) /// add an introduction to your stata.toc file
 		Width(integer 80) /// max width of text files
 		Cline(integer 2) /// comment line #__ of .ado file has title of package cline is first line printed into .pkg file
@@ -168,7 +169,8 @@ foreach pkg of local pck_list {
 	} // end loop thru files for package
 
 file write `looppkg' _newline "d" _newline `"d Program by `author'"' _newline
-file write `looppkg' "* This Stata package file created on ${S_DATE}" _newline
+if "`timestamp'"!="notimestamp" file write `looppkg' "* This Stata package file created automatically on ${S_DATE}" _newline
+else                            file write `looppkg' "* This Stata package file created automatically " _newline
 file write `looppkg' "* with Keith Kranker's package -pub2web-" _newline
 file close `looppkg' 
 file write `all' _newline
