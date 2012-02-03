@@ -18,10 +18,12 @@ d I do not turn on treat=1 for the whole array
 d 
 d By Keith Kranker
 d $
-d * EXAMPLE:
+d * BASIC EXAMPLE:
 d set trace on
 f p/predict_toggle.ado
 f p/predict_toggle.sthlp
+f p/predict_toggle_cum.ado
+f p/predict_toggle_cum.sthlp
 
 d
 d Program by Keith Kranker

@@ -1,4 +1,4 @@
-*! $Id: personal/m/meantab.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
+*! $Id: personal/m/meantab.ado, by Keith Kranker <keith.kranker@gmail.com> on 2012/01/07 18:15:06 (revision ef3e55439b13 by user keith) $
 *! Create a "summary statistics" table. 
 * 
 * Create a "summary statistics" table. 
@@ -14,12 +14,16 @@ program define meantab, eclass
 
 version 9.2
 
-syntax varlist(min=1 numeric) [if] [in] [fweight pweight aweight iweight] ///
+syntax varlist(min=1 numeric) [if] [in] ///
+	/// note: 7/13/2011 I'm not sure  weights are right, below.  I'm commenting them out ///
+	/// [fweight pweight aweight iweight] 
 	, ///
 	over(varname)   	///  Key option --> creates columns
 	[ 				    ///  
 	Tstat 				///  Use a regression to obtain t-statistic on difference from primary category. If  this is selected, you can use "char OverVarname[omit] to choose which category is ommitted" 
 	Difference			///  Instead of the "all" column, calculate differences between columns 1 and 2
+	noBlank             ///  In the main table, do not display a blank row between variables 
+	noSE                ///  In the main table, do not display standard errors
 	noNBelow            ///  Put a row at the bottom of the table with number of individuals in each group where `if' `in'
 	noNCELls			///  Put a row for each variable with number of individuals in the calculation.
 	noNCOLumn			///  If nocells is called, program adds an extra column with number of observations in row.  This option overrides this behavior.
@@ -130,17 +134,28 @@ if "`noisily'"=="noisily" {
 	
 if "`svy'"=="svy" local svy_prefix " svy : "
 else              local svy_prefix ""
+	
+// remove variables with no 
+foreach y of var `varlist' {
+	if ""=="`if'" local if_word = "if"
+	else          local if_word = " & "
+	qui count `if' `if_word' !mi(`y') & !mi(`group')  `in' 
+	if r(N) == 0 {
+		local varlist : list local(varlist) - local(y)
+		local dropped : list local(varlist) | local(y)
+	}
+}
+if `: list sizeof dropped' noisily di as err "The following variables are dropped because there are no observations: " as txt "`dropped'" _n
+
 
 if "`dots'"=="dots" noisily di as text "Variables completed: " _c
-	
-foreach y of local varlist {
+
+
+foreach y of var `varlist' {
     local ++v 
 	if "`dots'"=="dots" noisily di as res "..`v'" _c
 
-	if "`noisily'"=="noisily" {
-		local ylabtop : var label `y'
-		noisily di as txt _n "Beginning Analysis for variable " as res "`v'" as txt ":" as res `" `y' (`ylabtop')"' _n
-		}
+	if "`noisily'"=="noisily" noisily di as txt _n "Beginning Analysis for variable " as res "`v'" as txt ":" as res `" `y' `: var label `y''"' _n
 		
 	* * *  Run -mean- command for each variable with -over- variable, storing results for each column  * * * 
 
@@ -310,22 +325,33 @@ foreach y of local varlist {
 		mat colname `n_v_all'  = "All"
 	}
 	
-	local blk_cmd: display _dup(`c_n') ".z , " ".z"
-	mat `blank' = `blk_cmd'
-	mat rowname `blank' = " "
-		
+	if  missing("`se'") {
+		local seline "\ \`se_v' , \`se_v_all'"
+	}
+	else {
+		local seline ""
+	}
 	
+	if 	missing("`blank'") {
+		local blk_cmd: display _dup(`c_n') ".z , " ".z"
+		mat `blank' = `blk_cmd'
+		mat rowname `blank' = " "
+		local blankline " \ \`blank' "
+	}
+	else {
+		local blankline ""
+	}
+		
 	// For use with the n-column option; foreach variable, add "n" to the bottom of the column `n_column'
 	if ("`ncells'" == "noncells" & "`ncolumn'" != "noncolumn") {
 		// Place banks for "empty" rows that contain the cell's "n" or a t-statistic
-		if "`ncells'" != "noncells" local ncelldot "\ .z"
-		else                        local ncelldot ""
+		if "`ncells'" == "noncells" local ncelldot ""
+		else                        local ncelldot "\ .z"
 		if "`tstat'" == "tstat" local tcelldot "\ .z"
 		else                    local tcelldot ""
-		if (`v' == 1)   mat `n_column' = (             `n_all' \ .z \ .z  `ncelldot' `tcelldot' )
-		else            mat `n_column' = ( `n_column' \ `n_all' \ .z \ .z `ncelldot' `tcelldot' )				
+		mat `n_column' = ( nullmat(`n_column') \ `n_all'  `ncelldot' `tcelldot' )				
 		}
-
+		
 	* * * Run regression for the ttest option  * * * 
 	if "`tstat'" == "tstat" {
 			
@@ -383,28 +409,16 @@ foreach y of local varlist {
 	if "`ncells'" == "noncells" local nline " "
 	else                        local nline " \ `n_v'  , `n_v_all' "
 
-	if ( `v'==1 ) 	{
-		mat  `full_m'  = ( `m_v'  , `m_v_all' )
-		mat  `full_se' = ( `se_v' , `se_v_all')
-		mat  `full_n'  = ( `n_v'  , `n_v_all')
-		}
-	else  {
-		mat  `full_m' = ( `full_m' \ `m_v'  , `m_v_all' )
-		mat  `full_se' = (  `full_se' \ `se_v' , `se_v_all' )
-		mat  `full_n' = ( `full_n' \ `n_v'  , `n_v_all' )
-		}
+	mat  `full_m'  = ( nullmat(`full_m')  \ `m_v'  , `m_v_all' )
+	mat  `full_se' = ( nullmat(`full_se') \ `se_v' , `se_v_all' )
+	mat  `full_n'  = ( nullmat(`full_n')  \ `n_v'  , `n_v_all' )
 
 	foreach mat in `se_v' `se_v_all' `n_v' `n_v_all' {
 		mat rownames `mat' = ": "  // strip row labels
 		}
 
-	if ( `v'==1 ) 	{
-		mat `full_table' =  `m_v' , `m_v_all' \ `se_v' , `se_v_all' `tline' `nline' \ `blank'
-		}
-	else  {
-		mat `full_table' =  ( `full_table' \ `m_v' , `m_v_all' \ `se_v' , `se_v_all' `tline' `nline' \ `blank' )
-		}
-	
+	mat `full_table' =  ( nullmat(`full_table') \ `m_v' , `m_v_all' `seline' `tline' `nline' `blankline' )
+		
 	
 	if "`estout'"=="estout" {
 
@@ -444,7 +458,6 @@ foreach y of local varlist {
 }   // end loop thru varlist
 
 
-
 * * *   Form final matrixes, save and print results *** 	
 
 // Row for bottom of table with "overall" n counts
@@ -455,6 +468,7 @@ if "`nbelow'" != "nonbelow" {
 	mat   `full_table' =  `full_table' \ `full_nrow'   // Append N row to bottom of table (by default)
 	}
 
+	
 // no-ncells option without no-ncolumn option: adds "N" column to table
 if ("`ncells'" == "noncells" & "`ncolumn'" != "noncolumn") {
 	mat `n_column' = ( `n_column'  \ .z )

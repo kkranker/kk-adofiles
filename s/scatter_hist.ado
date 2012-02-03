@@ -1,4 +1,4 @@
-*! $Id: personal/s/scatter_hist.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
+*! $Id: personal/s/scatter_hist.ado, by Keith Kranker <keith.kranker@gmail.com> on 2012/01/07 18:15:06 (revision ef3e55439b13 by user keith) $
 *! Scatter plot with bordering histograms
 *
 * Implementation of graph(s) in 
@@ -14,7 +14,7 @@ syntax varlist(min=2 max=2 numeric) [if] [in] ///
 	/* Combine: title  options */ TItle(passthru) SUBtitle(passthru) note(passthru) CAPtion(passthru) T1title(passthru) T2title(passthru) B1title(passthru) B2title(passthru) L1title(passthru) L2title(passthru) R1title(passthru) R2title(passthru) ///
 	/* Combine: region options */ YSIZe(passthru) XSIZe(passthru) PLOTRegion(passthru) ///
 	/* Combine: other options  */ iscale(passthru) altshrink COMmonscheme SCHeme(passthru) nodraw name(passthru) saving(passthru) ///
-	/* Histogram: type */ density fraction frequency percent ///
+	/* Histogram type */ DENsity FRACtion FREQuency percent ///
 	/* Histogram: barlook options */ COLor(passthru) FColor(passthru) FIntensity(passthru) LColor(passthru) LWidth(passthru) LPattern(passthru) LSTYle(passthru) BSTYle(passthru) PSTYle(passthru) ///
 	/* Y-axis */ YSCale(string) YLABel(passthru) YTICk(passthru) YMLABel(passthru) YMTIck(passthru) YTItle(passthru) ///
 	/* X-axis */ XSCale(string) XLABel(string) XTICk(passthru) XMLABel(passthru) XMTIck(passthru) XTItle(passthru) ///

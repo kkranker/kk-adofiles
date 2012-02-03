@@ -1,4 +1,4 @@
-*! $Id: personal/p/pub2web.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/05/21 21:56:50 (revision fc8528809aa0 by user keith) $
+*! $Id: personal/p/pub2web.ado, by Keith Kranker <keith.kranker@gmail.com> on 2012/01/07 18:15:06 (revision ef3e55439b13 by user keith) $
 *! Turn a list of your .ado packages into a "usersite" website.
 
 * Input a list of your .ado programs
@@ -15,7 +15,7 @@
 * See {help usersite} for more info
 *
 * By Keith Kranker
-* $Date: 2011/03/28 16:36:00 $
+* $Date$
 
 program define pub2web
 
@@ -29,6 +29,7 @@ syntax ///
 		noSUBfolders /// don't put files in subfolders.
 		noCopy /// do not copy files/
 		noTimestamp /// do not put a timestamp in .pkg files
+		noALLPkg ///  do not create an "all.pkg" file.
 		Intro(string) /// add an introduction to your stata.toc file
 		Width(integer 80) /// max width of text files
 		Cline(integer 2) /// comment line #__ of .ado file has title of package cline is first line printed into .pkg file
@@ -39,22 +40,22 @@ local pwd = c(pwd)
 tempname toc all looppkg
 
 // output dir
-if missing("`using'") {
+if missing(`"`using'"') {
 	local using = c(pwd)
 	di as txt "No -using- folder. pub2web will use " as res `"using ""' c(pwd) `"""'
 }
-if regexm("`using'","(.*)(\\|\/)$") local using = regexs(1) // remove trailing slash
+if regexm(`"`using'"',"(.*)(\\|\/)$") local using = regexs(1) // remove trailing slash
 
 // input dir
-if missing("`from'") {
-	local from = c(sysdir_personal)
-	di as txt "No from() option. pub2web will use " as res `"from(""' c(pwd) `")""'
+if missing(`"`from'"') {
+	local from = `""`=c(sysdir_personal)'""'
+	di as txt "No from() option. pub2web will use " as res `"from( c(sysdir_personal) )"'
 }
 di as input "| . cd " _c 
-cd `"`from'"'
+cd `from'
 
-if "`using'"=="`from'" {
-	di as error ""`using'"=="`from'". -nocopy- option was turned on.
+if `"`using'"'==`"`from'"' {
+	di as error `""`using'"=="`from'". -nocopy- option was turned on."'
 	local copy = "nocopy"
 }
 
@@ -69,10 +70,12 @@ while !missing(`"`intro'"') {
 file write `toc'  "d" _newline "d Last updated: ${S_DATE}" _newline(2)
 
 // Start all.pkg
-file open  `all' using `"`using'/all.pkg"', write text `replace'
-file write `all' "v 3" _newline `"d all. Bulk download all Stata program(s) by `author'"' _newline `"d Program(s) by `author'"' _newline "d Bulk download all Stata programs" _newline "d" _newline "d Last updated: ${S_DATE}" _newline(2)
+if "`allpkg'"!="noallpkg" {
+	file open  `all' using `"`using'/all.pkg"', write text `replace'
+	file write `all' "v 3" _newline `"d all. Bulk download all Stata program(s) by `author'"' _newline `"d Program(s) by `author'"' _newline "d Bulk download all Stata programs" _newline "d" _newline "d Last updated: ${S_DATE}" _newline(2)
 
-file write `toc' `"p all Bulk download all Stata program(s) by `author'"' _newline
+	file write `toc' `"p all Bulk download all Stata program(s) by `author'"' _newline
+}
 
 // loop thru packages
 foreach pkg of local pck_list {
@@ -80,7 +83,7 @@ foreach pkg of local pck_list {
 	mac drop _files _subfiles
 	local p1 = substr("`pkg'",1,1)
 	
-	if "`pkg'"=="all" {
+	if "`pkg'"=="all" & "`allpkg'"!="noallpkg" {
 		di as error `"package named "all" skipped. That is because the program is creating an 'all.pkg' package file."'
 		continue
 	}
@@ -88,13 +91,11 @@ foreach pkg of local pck_list {
 	qui fs `pkg'* 
 	if !missing(r(files)) local files = r(files)
 	
-	if missing("`subfolders'") {
 		qui fs `p1'/`pkg'*  
 		foreach v in `r(files)'  {
 			local subfiles `subfiles' `p1'/`v'
 		}
 		local files : list files | subfiles
-	}
 	local files : list clean files
 
 	di _col(20) as res "`files'"
@@ -116,9 +117,10 @@ foreach pkg of local pck_list {
 	
 	foreach f of local files {
 	
-		if missing("`subfolders'") & regexm("`f'","^(.*)(\\|\/)+(.*)$") {
+		if regexm("`f'","^(.*)(\\|\/)+(.*)$") {
 			// file might be in subfolder 
-			local subf = regexs(1) + "/"
+			if "`subfolders'"=="nosubfolders" local subf ""
+			else                              local subf = regexs(1) + "/"
 			local filename = regexs(3)
 			cap mkdir `"`using'/`subf'"',  public
 		}
@@ -135,7 +137,7 @@ foreach pkg of local pck_list {
 		}
 		else local text ""
 
-		if missing("`copy'") {
+		if "`copy'"!="nocopy" {
 			di as input `"| . copy "`f'" "`using'/`subf'`filename'" , public `replace' `text'"'
 			copy "`f'" "`using'/`subf'`filename'" , public `replace' `text'
 		}
@@ -163,8 +165,10 @@ foreach pkg of local pck_list {
 		}
 
 		// add file to .pkg (and all.pkg)
-		file write `looppkg'  "f `subf'`filename'" _newline
-		file write `all'  "f `subf'`filename'" _newline
+		if "`allpkg'"!="noallpkg" {
+			file write `looppkg'  "f `subf'`filename'" _newline
+			file write `all'  "f `subf'`filename'" _newline
+		}
 	
 	} // end loop thru files for package
 
@@ -173,19 +177,23 @@ if "`timestamp'"!="notimestamp" file write `looppkg' "* This Stata package file 
 else                            file write `looppkg' "* This Stata package file created automatically " _newline
 file write `looppkg' "* with Keith Kranker's package -pub2web-" _newline
 file close `looppkg' 
-file write `all' _newline
+if "`allpkg'"!="noallpkg" file write `all' _newline
 			  
 } // end loop thru packages
 
-di as input "| . cd " _c 
+di as input _n  "| . cd " _c 
 cd `"`pwd'"'
 
-file write `all' "* This Stata package file created on ${S_DATE}" _newline "* with Keith Kranker's package -pub2web-" _newline
-file close `all'
+if "`allpkg'"!="noallpkg" {
+	file write `all' "* This Stata package file created on ${S_DATE}" _newline "* with Keith Kranker's package -pub2web-" _newline
+	file close `all'
+}
 
 file write `toc' _newline(2) "* This Stata table of contents (stata.toc) file created on ${S_DATE}" _newline "* with Keith Kranker's package -pub2web-" _newline
 file close `toc'
 
 if !missing(`"`problems'"') di as err "No files for these packages: " _n as res _col(5) `"`problems'"'
-	
+
+view net from `"`using'"'
+
 end 

@@ -1,4 +1,4 @@
-*! $Id: personal/g/graphbetas.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
+*! $Id: personal/g/graphbetas.ado, by Keith Kranker <keith.kranker@gmail.com> on 2012/01/07 18:15:06 (revision ef3e55439b13 by user keith) $
 *! Rudimentary program to graph beta coefficients after a regression (for example)
 
 * (1) if you specify something for "find" it will only graph the beta cofficients for the 
@@ -31,8 +31,9 @@ if !missing("`namelist'") {
 else matrix `b' = e(b)
 local cc = colsof(`b') 
 local colnames : colfullnames `b'
-local c=1
+local c=0
 foreach j of local colnames {
+	local ++c
 	if ( !missing("`find'") & 0==regexm( "`j'", "`find'"))    continue  // skip beta because no match with find
 	if ( !missing("`noconstant'") & regexm( "`j'", "_cons"))  continue  // skip beta for _cons when -noconstant- is on
 	if regexm( "`j'", "(.*:)(.*)") {
@@ -48,7 +49,6 @@ foreach j of local colnames {
 	}
 	else                                                            local j_lab "`j'"
 	local all `" `all' `=`b'[1,`c']' `c' (4) "`j_eqn'`j_lab'" "'
-	local ++c
 }
 if (missing(trim(`"`all'"')) & missing(`"`find'"')) di as error `"Nothing matched find(`find')."'
 if missing(`"`xtitle'"') local xtitle `"xtitle("")"'

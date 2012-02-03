@@ -3,6 +3,7 @@ d xilabel.
 d
 d Quickly "clean up" variable labels for variables created by the [xi : ] command.
 d .
+d 
 d Example: Say you used -xi- to create dummies for "race" (variable
 d label "Race or Ethnicity"), where there is a value label for "2" (Black)
 d and the new variable from xi: is  _racrace_2  with label race==2
@@ -20,7 +21,7 @@ d and value label.
 d This program does not work with interaction terms.
 d 
 d By Keith Kranker
-d $
+d Last updated: $
 f x/xilabel.ado
 f x/xilabel.sthlp
 

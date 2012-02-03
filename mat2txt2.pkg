@@ -22,7 +22,7 @@ d (11) Filestamp option (Verson 1.4+) {break}
 d (12) Rowclean, colclean, rowlabel, and collabel options (Verson 1.5+) {break}
 d 
 d By Keith Kranker
-d $
+d Last updated: $
 f m/mat2txt2.ado
 f m/mat2txt2.sthlp
 

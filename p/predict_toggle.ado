@@ -1,4 +1,4 @@
-*! $Id: personal/p/predict_toggle.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/05/21 21:47:30 (revision 4be98ee92589 by user keith) $
+*! $Id: personal/p/predict_toggle.ado, by Keith Kranker <keith.kranker@gmail.com> on 2012/01/07 18:04:57 (revision 9f1d00439570 by user keith) $
 *! After a regression, predict with X1=0, X1=1, then calculate the difference
 
 * This is a post-estimation command.  
@@ -19,7 +19,7 @@
 *! By Keith Kranker
 *! $Date$
 
-/* EXAMPLE: 
+/* BASIC EXAMPLE: 
 clear
 set trace off
 * set trace on
@@ -39,11 +39,32 @@ tobit y x x2 z , ll
 predict_toggle x , ystar(.25,.)           // these two specifications are identical
 predict_toggle x , predict(ystar(.25,.))
 
+
+Predict Toggle  was used before the margins command was added to Stata. 
+The only thing it is needed any longer is the arraytreatments option (and predict_toggle_cum, below)
+
+This code demonstrates that margins and predict_toggle are identical with one independent variable.
+
+	// margins
+	webuse margex
+	logit outcome i1.treatment i.group age c.age#c.age
+	estimates store hold
+	margins , dydx(treatment) predict(pr) post
+	estimates restore hold
+	margins , dydx(treatment) predict(pr) over(treatment) post
+
+	// margins results above are identical to predict_toggle results, except it gives standard errors from the delta-method
+	qui logit outcome treatment i.group age c.age#c.age  // no i. before treatment
+	predict_toggle treatment 
+
+	// and margins can handle interaction terms too
+	logit outcome i1.treatment##i.group i.group#c.age c.age#c.age 
+	margins, dydx(treatment) over( treatment group ) post
+
 */
 
-cap program drop predict_toggle
 program define predict_toggle, eclass
-	version 9                        
+	version 10                        
 	syntax varlist [if] [in] [fweight pweight aweight iweight] ///
 		[, ARraytreatments  /// turn all varlist vars off for untreated; not one at a time
 		   svy              /// prefix "mean ___ " with "svy:"  (survey is turned on automatically if previous regression also used survey)
@@ -293,5 +314,11 @@ program define predict_toggle, eclass
 		}
 	}
 
+	ereturn scalar predict_toggle = 1
+	ereturn scalar predict_toggle_1 = !mi("`arraytreatments'") | 1==`: list sizeof varlist'
+	ereturn scalar predict_toggle_replace = "`replace'"!="noreplace"
+	ereturn local  predict_toggle_prefix  = "`prefix'"
+	ereturn scalar predict_toggle_weight  = !missing(trim(`"`wtexp'"'))
+	ereturn scalar predict_toggle_svy     = !missing(trim(`"`svy'"'))
 end 
 

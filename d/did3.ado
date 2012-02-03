@@ -1,4 +1,4 @@
-*! $Id: personal/d/did3.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
+*! $Id: personal/d/did3.ado, by Keith Kranker <keith.kranker@gmail.com> on 2012/01/07 18:15:06 (revision ef3e55439b13 by user keith) $
 *! Create difference-in-differences tables.
 *
 * See help file for more information
@@ -8,8 +8,8 @@
 
 program define did3, eclass   by(recall)
 
-	version 9
-	syntax varlist(min=3 max=3 numeric) [if] [in] [fweight pweight aweight  iweight] ///
+	version 10.1
+	syntax varlist(min=3 max=3 numeric) [if] [in] [aw fw iw pw] ///
 		[, 					///
 		NOISily 			///  Display extra results: checking; regression output; and means & SE tables 
 		Format(string) 		///  Specify format for display of tables (matrix saves all digits)
@@ -21,6 +21,10 @@ program define did3, eclass   by(recall)
 	gettoken  y xvars : varlist
 	gettoken  treat after: xvars
 	marksample touse
+	
+	if missing("`weight'") local wtexp ""
+	else                   local wtexp "[`weight' `exp']"
+
 
 	* Display variable names, with labels 
 	local y_lab : var label `y'
@@ -52,8 +56,8 @@ program define did3, eclass   by(recall)
 
 	foreach pp in 0 1 {
 		foreach tc in 1 0  {
-			if "`noisily'" != "" noisily di as input "regress `y' if (`treat' == `tc' &  `after' == `pp')            `weight',  `vce' `robust' `cluster' `hc2' `hc3'"
-			`noisily'                                 regress `y' if (`treat' == `tc' &  `after' == `pp') & `touse'  `weight',  `vce' `robust' `cluster' `hc2' `hc3'
+			if "`noisily'" != "" noisily di as input "regress `y' if (`treat' == `tc' &  `after' == `pp')            `wtexp',  `vce' `robust' `cluster' `hc2' `hc3'"
+			`noisily'                                 regress `y' if (`treat' == `tc' &  `after' == `pp') & `touse'  `wtexp',  `vce' `robust' `cluster' `hc2' `hc3'
 			local m`tc'`pp' =  _b[_cons]
 			local s`tc'`pp' =  _se[_cons]
 			returnstars , beta(`m`tc'`pp'') st_err( `s`tc'`pp'') df_r(`e(df_r)')
@@ -65,8 +69,8 @@ program define did3, eclass   by(recall)
 	* * *  Calculate and store differences/standard errors for columns * * *  
 
 	foreach pp in 0 1 {
-	    if "`noisily'" != "" noisily di as input "regress `y' `treat' if  (`after' == `pp')           `weight',  `vce' `robust' `cluster' `hc2' `hc3'"
-		`noisily'                                 regress `y' `treat' if  (`after' == `pp') & `touse' `weight',  `vce' `robust' `cluster' `hc2' `hc3'
+	    if "`noisily'" != "" noisily di as input "regress `y' `treat' if  (`after' == `pp')           `wtexp',  `vce' `robust' `cluster' `hc2' `hc3'"
+		`noisily'                                 regress `y' `treat' if  (`after' == `pp') & `touse' `wtexp',  `vce' `robust' `cluster' `hc2' `hc3'
 		local md`pp' = _b[`treat']
 		local sd`pp' = _se[`treat']
 		returnstars , beta(`md`pp'') st_err( `sd`pp'') df_r(`e(df_r)')
@@ -76,8 +80,8 @@ program define did3, eclass   by(recall)
 	* * *  Calculate and store differences/standard errors for rows * * *  
 
 	foreach tc in 1 0  {
-		if "`noisily'" != "" noisily di as input "regress `y' `after' if (`treat' == `tc')           `weight',  `vce' `robust' `cluster' `hc2' `hc3'"
-		`noisily'                                 regress `y' `after' if (`treat' == `tc') & `touse' `weight',  `vce' `robust' `cluster' `hc2' `hc3'
+		if "`noisily'" != "" noisily di as input "regress `y' `after' if (`treat' == `tc')           `wtexp',  `vce' `robust' `cluster' `hc2' `hc3'"
+		`noisily'                                 regress `y' `after' if (`treat' == `tc') & `touse' `wtexp',  `vce' `robust' `cluster' `hc2' `hc3'
 		local m`tc'd = _b[`after']
 		local s`tc'd = _se[`after']
 		returnstars , beta(`m`tc'd') st_err( `s`tc'd') df_r(`e(df_r)')
@@ -86,8 +90,8 @@ program define did3, eclass   by(recall)
 
 	* * *  Calculate and store difference-in-difference estimate * * *  
 
-	if "`noisily'" != "" noisily di as input "regress `y' `treat' `after' (`treat' *`after')             `weight',  `vce' `robust' `cluster' `hc2' `hc3'"
-	`noisily'                                 regress `y' `treat' `after' `interaction'       if `touse' `weight',  `vce' `robust' `cluster' `hc2' `hc3'
+	if "`noisily'" != "" noisily di as input "regress `y' `treat' `after' (`treat' *`after')             `wtexp',  `vce' `robust' `cluster' `hc2' `hc3'"
+	`noisily'                                 regress `y' `treat' `after' `interaction'       if `touse' `wtexp',  `vce' `robust' `cluster' `hc2' `hc3'
 	local mdd = _b[`interaction']
 	local sdd = _se[`interaction']
 	returnstars , beta(`mdd') st_err( `sdd') df_r(`e(df_r)')

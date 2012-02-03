@@ -1,4 +1,4 @@
-*! $Id: personal/n/npp.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
+*! $Id: personal/n/npp.ado, by Keith Kranker <keith.kranker@gmail.com> on 2012/01/07 18:04:57 (revision 9f1d00439570 by user keith) $
 *! Open something in Notepad++
 *
 *! By Keith Kranker
@@ -6,6 +6,6 @@
 
 program define npp
 	version 9
-	syntax [anything]
-	winexec "C:\Program Files (x86)\Notepad++\notepad++.exe" `anything'
+	cap winexec "C:\Program Files (x86)\Notepad++\notepad++.exe"   `0'
+	cap winexec "C:\Program Files\Notepad++\notepad++.exe" `0'
 end

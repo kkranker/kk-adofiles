@@ -1,4 +1,4 @@
-$Id$
+$Id: personal/p/pub2web.sthlp, by Keith Kranker <keith.kranker@gmail.com> on 2012/01/07 18:15:06 (revision ef3e55439b13 by user keith) $
 
 Help for pub2web.ado
 
@@ -29,6 +29,7 @@ pub2web
     replace                   overwrite files
     noSUBfolders              don't put files in subfolders.
     noCopy                    do not copy files
+	noALLPkg                  do not create an "all.pkg" file.
     noTimestamp               do not put a timestamp in .pkg files
     Intro(string)             add an introduction to your stata.toc file
     Width(integer 80)         max width of text files
@@ -39,4 +40,4 @@ pub2web
 
 
 By Keith Kranker
-$Date: 2011/03/28 16:36:00 $
+$Date$

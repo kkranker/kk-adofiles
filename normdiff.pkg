@@ -10,8 +10,13 @@ d Imbens & Wooldridge  (2009) "Recent Developments in the Econometrics of Progra
 d Evaluation."
 d Journal of Economic Literature.  March 2009, Volume XLVII, Number 1.
 d 
+d It also displays means for the "treatment" and "control" groups for each variabl
+d le.
+d 
+d the Pvalue option runs
+d 
 d By Keith Kranker
-d $
+d Last updated: $
 f n/normdiff.ado
 f n/normdiff.sthlp
 f n/normdiff_example.ado

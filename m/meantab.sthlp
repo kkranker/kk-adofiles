@@ -1,5 +1,5 @@
 {smcl}
-{* $Id$ }
+{* $Id: personal/m/meantab.sthlp, by Keith Kranker <keith.kranker@gmail.com> on 2012/01/07 18:04:57 (revision 9f1d00439570 by user keith) $ }
 {* $Date$}{...}
 {cmd:help meantab}
 {hline}
@@ -24,6 +24,8 @@
 {syntab:Main options}
 {synopt:{opt t:stat}}Row with t-statistics.{p_end}
 {synopt:{opt d:ifference}}Last column reports differences.{p_end}
+{synopt:{opt nob:lank}}In the main table, do not display a blank row between variables. {p_end}
+{synopt:{opt nose}}In the main table, do not display standard errors.{p_end}
 {synopt:{opt nonb:elow}}Remove row at the bottom of table with number of individuals in each group.{p_end}
 {synopt:{opt nonce:lls}}Remove row for each variable with number of individuals in the calculation.{p_end}
 {synopt:{opt noncol:umn}}Remove row with number of observations when {opt nocells} is called.{p_end}
@@ -180,7 +182,7 @@ are also passed to the {help regress} command for the {opt difference} or {opt t
 
 
 {title:Other Information}
-{* $Id$ }
+{* $Id: personal/m/meantab.sthlp, by Keith Kranker <keith.kranker@gmail.com> on 2012/01/07 18:04:57 (revision 9f1d00439570 by user keith) $ }
 {phang}Author: Keith Kranker{p_end}
 
 {phang}$Date${p_end}

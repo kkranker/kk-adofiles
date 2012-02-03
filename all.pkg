@@ -3,7 +3,7 @@ d all. Bulk download all Stata program(s) by Keith Kranker
 d Program(s) by Keith Kranker
 d Bulk download all Stata programs
 d
-d Last updated: 21 May 2011
+d Last updated:  3 Feb 2012
 
 f a/alt.ado
 f a/alt.sthlp
@@ -72,7 +72,7 @@ f m/mat_blockdiag.ado
 
 f m/meantab.ado
 f m/meantab.sthlp
-f m/meantab_example.do
+f m/meantab_example.ado
 
 f m/memmax.ado
 f m/memmax.sthlp
@@ -94,6 +94,8 @@ f n/npp.sthlp
 
 f p/predict_toggle.ado
 f p/predict_toggle.sthlp
+f p/predict_toggle_cum.ado
+f p/predict_toggle_cum.sthlp
 
 f p/predlog2.ado
 f p/predlog2.sthlp
@@ -121,5 +123,5 @@ f x/xilabel.sthlp
 
 f x/xtdesc.ado
 
-* This Stata package file created on 21 May 2011
+* This Stata package file created on  3 Feb 2012
 * with Keith Kranker's package -pub2web-

@@ -1,4 +1,4 @@
-*! $Id: personal/m/mat2txt2.ado, by Keith Kranker <keith.kranker@gmail.com> on 2011/04/19 20:56:24 (revision b8ba72488bca by user keith) $
+*! $Id: personal/m/mat2txt2.ado, by Keith Kranker <keith.kranker@gmail.com> on 2012/01/07 18:15:06 (revision ef3e55439b13 by user keith) $
 *! Export a matrix to text file.
 *
 * This program is an update/modification of mat2txt.ado by Ben Jann and M Blasnik (v 1.1.2)
@@ -18,7 +18,7 @@
 * (12) Rowclean, colclean, rowlabel, and collabel options (Verson 1.5+) {break}
 *!
 *! By Keith Kranker
-*! $Date$
+*! Last updated: $Date$
 
 
 program define mat2txt2
