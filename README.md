@@ -11,7 +11,7 @@ Among other programs, you'll find...
 
 * `did3         ` - Create difference-in-differences tables. 
 * `mat2txt2     ` - Export matrix to text file. 
-* `meantab      ` - `mean varlist`, with columns separated by a categorical variable. 
+* `meantab      ` - Essentially, `mean varlist`, with columns separated by a categorical variable. 
 * `memmax       ` - Set memory to the maximum allowed by your operating system. 
 * `motionshart  ` - Create graphs of your data, from Stata, as a Google Motion Chart.
 * `normdiff     ` - Create a table to compare means of two groups, with a column containing normalized differences. 
@@ -23,19 +23,20 @@ stata.toc has the full list of available packages.
 
 You can get to the programs three ways:
 1 (Recommended) Use Mercurial to checkout this repository, then install the .ado files.
-```
+```stata
     #get files
     hg clone https://keithk@bitbucket.org/keithk/kk-adofiles 
     cd kk-adofiles
-
-    #if this isn't a folder recognized by Stata, you could use the .toc file to install:
+```
+  If this isn't a folder recognized by Stata, you could use the .toc file to install:
+```
     stata
     . net from "`c(pwd)'"
-````
+```
 
 2 In Stata, you _should_ be able to type the following (although this doesn't always work due to a bug in Stata) 
-``` 
-    net from https://bitbucket.org/keithk/kk-adofiles/raw/3668170c07edef8ad9f18af25b3e2a39673c62ee/
+```
+   . net from https://bitbucket.org/keithk/kk-adofiles/raw/3668170c07edef8ad9f18af25b3e2a39673c62ee/
  
 ```
 
